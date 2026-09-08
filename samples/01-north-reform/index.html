@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ノースリフォーム｜札幌市の内装リフォーム・内装修繕｜クロス・床の張り替え</title>
-<meta name="description" content="ノースリフォームは、札幌市・江別市・北広島市・石狩市など札幌近郊の内装リフォーム・内装修繕の個人店です。クロス・壁紙の張り替え、床・フローリングの施工、部分的な補修まで。相談から施工、施工後の清掃まで代表の北川が直接対応します。小さな工事もお気軽にご相談ください。">
+<meta name="description" content="ノースリフォームは、札幌市・江別市・北広島市・石狩市など札幌近郊の、地域密着の内装リフォーム・内装修繕店です。クロス・壁紙の張り替え、床・フローリングの施工、部分的な補修まで。代表を中心とした少人数のチームで、相談から施工、施工後の清掃まで対応します。小さな工事もお気軽にご相談ください。">
 <meta name="robots" content="noindex">
 <meta property="og:type" content="website">
 <meta property="og:title" content="ノースリフォーム｜札幌市の内装リフォーム・内装修繕">
-<meta property="og:description" content="札幌市を中心に、内装リフォーム・内装修繕を承っています。個人店ならではの柔軟な対応と、施工後の清掃まで丁寧に。小さな工事からお気軽にご相談ください。">
+<meta property="og:description" content="札幌市を中心に、内装リフォーム・内装修繕を承っています。少人数のチームならではの小回りのきく対応と、施工後の清掃まで丁寧に。小さな工事からお気軽にご相談ください。">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -161,7 +161,8 @@ a:hover { color: var(--color-primary-hover); }
   border-radius: var(--radius);
 }
 .media.bare { border: 0; border-radius: var(--radius-none); }
-.media > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.media > img, .media > picture { position: absolute; inset: 0; }
+.media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
 .media.r-16x9 { aspect-ratio: 16 / 9; }
 .media.r-3x2  { aspect-ratio: 3 / 2; }
 .media.r-4x3  { aspect-ratio: 4 / 3; }
@@ -256,8 +257,16 @@ a:hover { color: var(--color-primary-hover); }
   position: relative;
   margin: 0 var(--pad-inline) clamp(24px, 6vw, 64px);
   max-width: 620px;
-  background: var(--color-bg);
-  border: var(--border);
+  /* 完全な白の「箱」ではなく、文章側から写真側へ透ける半透明の白。
+     opacity は使わず gradient + backdrop-filter で文字・ボタンの視認性は保つ。 */
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.90) 46%,
+    rgba(255, 255, 255, 0.78) 100%
+  );
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
   border-radius: var(--radius);
   box-shadow: var(--shadow-card);
   padding: clamp(24px, 4vw, 40px);
@@ -270,10 +279,27 @@ a:hover { color: var(--color-primary-hover); }
 
 @media (min-width: 768px) {
   .hero__inner { margin-left: max(var(--pad-inline), calc(50vw - var(--container-max) / 2)); }
+  /* PC: Hero写真を右バンドに寄せて、人物の顔が左の白ボックスに隠れないようにする。
+     画像領域を狭めることで横方向のトリミング領域を確保し、object-position で人物を右へ。
+     左端はマスクで白へフェードさせ、白ボックスとの境界を目立たせない。 */
+  .hero__media {
+    left: 30%;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 112px);
+            mask-image: linear-gradient(to right, transparent, #000 112px);
+  }
+  .hero__media .media img { object-position: 30% center; }
+}
+@media (min-width: 768px) and (max-width: 1240px) {
+  .hero__media { left: 36%; }
+  .hero__media .media img { object-position: 22% center; }
 }
 @media (max-width: 767px) {
   .hero { min-height: 76vh; }
-  .hero__inner { margin: 0 var(--pad-inline) 20px; max-width: none; width: calc(100% - var(--pad-inline) * 2); }
+  .hero__inner {
+    margin: 0 var(--pad-inline) 20px; max-width: none; width: calc(100% - var(--pad-inline) * 2);
+    /* SPは文章エリアが横いっぱいなので、透け具合はゆるめにして可読性を優先 */
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.90));
+  }
   .hero .cta-row .btn { width: 100%; }
   .hero .cta-row .btn.secondary { min-height: 46px; }
 }
@@ -391,6 +417,7 @@ a:hover { color: var(--color-primary-hover); }
   display: flex; gap: var(--space-16); align-items: flex-start;
   padding: var(--space-24) 0;
   font-size: var(--fs-h4); font-weight: 700;
+  text-wrap: pretty; word-break: auto-phrase;
 }
 .faq summary::-webkit-details-marker { display: none; }
 .faq summary::before { content: "Q"; font-family: var(--font-en); color: var(--color-primary); flex: none; }
@@ -510,17 +537,12 @@ a:hover { color: var(--color-primary-hover); }
        =============================================================== -->
   <section class="hero" aria-label="ノースリフォーム">
     <div class="hero__media">
-      <!-- PHOTO[hero]: 代表が養生 or 清掃している作業中の1枚。16:9（SP用に4:5を<picture>で出し分け）。完成写真にしない。 -->
-      <!-- <picture>
-             <source media="(max-width: 767px)" srcset="images/hero-sp.jpg">
-             <img src="images/hero.jpg" alt="代表が室内を養生し、清掃しながら内装リフォームを進めている様子" width="2000" height="1125">
-           </picture> -->
+      <!-- PHOTO[hero]: 代表が養生・清掃している作業中の1枚。PC 16:9 / SP 4:5。差し替え可。 -->
       <div class="media r-16x9 bare">
-        <span class="media__ph">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M3 9l9-6 9 6v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21v-8h6v8"/></svg>
-          <span>代表が施工・清掃している様子</span>
-          <small>PHOTO 16:9 / SP 4:5</small>
-        </span>
+        <picture>
+          <source media="(max-width: 767px)" srcset="images/hero-sp.jpg">
+          <img src="images/hero.jpg" alt="床にシートを敷いて養生する、ノースリフォーム代表の北川" width="1672" height="941" fetchpriority="high" decoding="async">
+        </picture>
       </div>
     </div>
 
@@ -529,7 +551,7 @@ a:hover { color: var(--color-primary-hover); }
       <h1><span class="nw">住まいも、仕事も、</span><br><span class="nw">きれいに。</span></h1>
       <p class="hero__sub">
         札幌市を中心に、内装リフォーム・内装修繕を承っています。<br>
-        個人店ならではの柔軟な対応と、施工後の清掃まで丁寧に。<br>
+        少人数のチームだからできる柔軟な対応と、施工後の清掃まで丁寧に。<br>
         小さな工事から、お気軽にご相談ください。
       </p>
       <div class="cta-row">
@@ -553,15 +575,15 @@ a:hover { color: var(--color-primary-hover); }
           <p class="eyebrow">About</p>
           <h2 id="about-h">工事だけではなく、<br>その前後まで丁寧に。</h2>
           <div class="prose" style="margin-top: var(--space-24)">
-            <p>ノースリフォームは、札幌市と近郊で、住宅や店舗の内装リフォーム・修繕を行う個人店です。<span class="nw">お問い合わせ</span>から現地確認、お見積もり、施工、施工後の清掃まで、代表の北川がひとりで担当します。</p>
+            <p>ノースリフォームは、札幌市と近郊で、住宅や店舗の内装リフォーム・修繕を手がける、地域の小さなリフォーム店です。代表の北川を中心に、少人数のスタッフ・職人でチームを組み、<span class="nw">お問い合わせ</span>から現地確認、お見積もり、施工、施工後の清掃までを担当します。</p>
             <p>得意にしているのは、壁紙や床の張り替え、内装の補修など、暮らしに身近な工事です。「一面だけ」「傷んだところだけ」という小さなご相談も歓迎しています。</p>
             <p>仕上がりだけでなく、作業中の整理整頓や施工後の清掃までを、ひとつの仕事と考えています。</p>
           </div>
         </div>
         <div class="col-media" data-animate>
-          <!-- PHOTO[about]: 種類ごとに整頓された道具箱、または養生済みの床での作業風景。3:2 -->
+          <!-- PHOTO[about]: 整頓された道具／養生済みの床での作業風景。3:2。差し替え可。 -->
           <div class="media r-3x2">
-            <span class="media__ph"><span>整理された道具・作業風景</span><small>PHOTO 3:2</small></span>
+            <img src="images/about.jpg" alt="種類ごとに整理された道具箱と、奥で内装を進める施工スタッフ" width="1536" height="1024" loading="lazy" decoding="async">
           </div>
         </div>
       </div>
@@ -607,7 +629,7 @@ a:hover { color: var(--color-primary-hover); }
 
       <div class="card-grid" data-animate>
         <article class="card">
-          <div class="media r-3x2"><span class="media__ph"><span>クロス施工中</span><small>PHOTO 3:2</small></span></div>
+          <div class="media r-3x2"><img src="images/service-01-cloth.jpg" alt="壁に新しい壁紙を貼り、なで刷毛で押さえる施工スタッフ" width="1536" height="1024" loading="lazy" decoding="async"></div>
           <div class="card__body">
             <p class="card__no">01</p>
             <h3>クロス・壁紙</h3>
@@ -617,7 +639,7 @@ a:hover { color: var(--color-primary-hover); }
         </article>
 
         <article class="card">
-          <div class="media r-3x2"><span class="media__ph"><span>床材の施工中</span><small>PHOTO 3:2</small></span></div>
+          <div class="media r-3x2"><img src="images/service-02-floor.jpg" alt="下地の上にフローリング材を張っていく施工スタッフの手元" width="1536" height="1024" loading="lazy" decoding="async"></div>
           <div class="card__body">
             <p class="card__no">02</p>
             <h3>床・フローリング</h3>
@@ -627,7 +649,7 @@ a:hover { color: var(--color-primary-hover); }
         </article>
 
         <article class="card">
-          <div class="media r-3x2"><span class="media__ph"><span>パテ・内装の補修</span><small>PHOTO 3:2</small></span></div>
+          <div class="media r-3x2"><img src="images/service-03-repair.jpg" alt="ヘラで壁の下地をパテ処理する施工スタッフ" width="1536" height="1024" loading="lazy" decoding="async"></div>
           <div class="card__body">
             <p class="card__no">03</p>
             <h3>内装補修</h3>
@@ -637,17 +659,17 @@ a:hover { color: var(--color-primary-hover); }
         </article>
 
         <article class="card">
-          <div class="media r-3x2"><span class="media__ph"><span>洗面まわりの内装</span><small>PHOTO 3:2</small></span></div>
+          <div class="media r-3x2"><img src="images/service-04-water.jpg" alt="洗面台の扉と建具を調整する施工スタッフ" width="1536" height="1024" loading="lazy" decoding="async"></div>
           <div class="card__body">
             <p class="card__no">04</p>
             <h3>水回り周辺の内装工事</h3>
-            <p>キッチン・洗面・トイレまわりの、壁と床の内装工事。設備そのものの交換に合わせた内装にも対応します。</p>
+            <p>キッチン・洗面・トイレまわりの、壁や床の内装と、洗面台や建具まわりの造作。設備の交換に合わせた内装にも対応します。</p>
             <p class="eg">例：洗面室の床と壁／トイレのクロスと床／キッチンパネル周辺</p>
           </div>
         </article>
 
         <article class="card">
-          <div class="media r-3x2"><span class="media__ph"><span>空室のクロス張り替え</span><small>PHOTO 3:2</small></span></div>
+          <div class="media r-3x2"><img src="images/service-05-restore.jpg" alt="退去後の空室で壁のクロスを張り替える施工スタッフ" width="1536" height="1024" loading="lazy" decoding="async"></div>
           <div class="card__body">
             <p class="card__no">05</p>
             <h3>原状回復</h3>
@@ -657,7 +679,7 @@ a:hover { color: var(--color-primary-hover); }
         </article>
 
         <article class="card">
-          <div class="media r-3x2"><span class="media__ph"><span>一室まるごとの施工</span><small>PHOTO 3:2</small></span></div>
+          <div class="media r-3x2"><img src="images/service-06-partial.jpg" alt="一部屋をまとめて仕上げているリフォーム現場" width="1536" height="1024" loading="lazy" decoding="async"></div>
           <div class="card__body">
             <p class="card__no">06</p>
             <h3>部分リフォーム</h3>
@@ -681,7 +703,7 @@ a:hover { color: var(--color-primary-hover); }
 
       <div class="two-col" data-animate>
         <div class="col-media">
-          <div class="media r-3x2"><span class="media__ph"><span>養生・作業中の整理整頓</span><small>PHOTO 3:2</small></span></div>
+          <div class="media r-3x2"><img src="images/strength-01-clean.jpg" alt="床全体を養生し、道具を片づけて整理したリフォーム現場" width="1536" height="1024" loading="lazy" decoding="async"></div>
         </div>
         <div class="col-text">
           <p class="mini-num">01</p>
@@ -692,34 +714,34 @@ a:hover { color: var(--color-primary-hover); }
 
       <div class="two-col reverse" data-animate>
         <div class="col-media">
-          <div class="media r-3x2"><span class="media__ph"><span>現地確認をする代表</span><small>PHOTO 3:2</small></span></div>
+          <div class="media r-3x2"><img src="images/strength-02-owner.jpg" alt="壁ぎわの寸法を測り、内容を記録する担当者" width="1536" height="1024" loading="lazy" decoding="async"></div>
         </div>
         <div class="col-text">
           <p class="mini-num">02</p>
-          <h3>代表が直接対応</h3>
-          <p>お問い合わせから現地確認、お見積もり、施工、最後の確認まで、すべて代表の北川が担当します。担当者が途中で変わらないので、「営業に伝えたことが職人に届いていない」ということが起こりません。</p>
+          <h3>現地確認は、代表を中心に</h3>
+          <p>施工前に、現場の状態や寸法をその場で確認し、必要な工事の内容を記録します。代表を中心に確認し、その内容をそのまま担当スタッフと共有するので、「聞いていた話と違う」ということが起こりません。</p>
         </div>
       </div>
 
       <div class="two-col" data-animate>
         <div class="col-media">
-          <div class="media r-3x2"><span class="media__ph"><span>打ち合わせの様子</span><small>PHOTO 3:2</small></span></div>
+          <div class="media r-3x2"><img src="images/strength-03-meeting.jpg" alt="内装サンプルや図面を見ながらお客様と打ち合わせる担当者" width="1536" height="1024" loading="lazy" decoding="async"></div>
         </div>
         <div class="col-text">
           <p class="mini-num">03</p>
-          <h3>個人店だから柔軟</h3>
-          <p>日程や予算のご相談、一部分だけの施工にも、できる範囲で柔軟に対応します。「こんなことでも頼めますか？」というところから、お聞かせください。</p>
+          <h3>相談しながら、一緒に決める</h3>
+          <p>サンプルや事例を見ていただきながら、ご希望・ご予算・日程をうかがい、素材やプランを一緒に選びます。こちらから一方的に決めることはありません。「こんなことでも頼めますか？」という段階から、お聞かせください。</p>
         </div>
       </div>
 
       <div class="two-col reverse" data-animate>
         <div class="col-media">
-          <div class="media r-3x2"><span class="media__ph"><span>一面だけのクロス張り替え</span><small>PHOTO 3:2</small></span></div>
+          <div class="media r-3x2"><img src="images/strength-04-small.jpg" alt="部屋の壁一面だけ、新しいクロスを張り替える施工スタッフ" width="1536" height="1024" loading="lazy" decoding="async"></div>
         </div>
         <div class="col-text">
           <p class="mini-num">04</p>
           <h3>小さな工事も歓迎</h3>
-          <p>クロス一面だけ、床の一部分だけ、小さな補修だけ。大きな工事でなくても遠慮はいりません。そうした工事こそ、個人店の得意なところです。</p>
+          <p>クロス一面だけ、床の一部分だけ、小さな補修だけ。大きな工事でなくても遠慮はいりません。地域の小さなリフォーム店だからこそ、こうした工事にもしっかり向き合えます。</p>
         </div>
       </div>
     </div>
@@ -738,22 +760,22 @@ a:hover { color: var(--color-primary-hover); }
 
       <div class="process" data-animate>
         <div class="process__step">
-          <!-- PHOTO[clean-1]: 床・家具・通路を養生している様子。4:3 -->
-          <div class="media r-4x3"><span class="media__ph"><span>養生している様子</span><small>PHOTO 4:3</small></span></div>
+          <!-- PHOTO[clean-1]: 床・家具・通路を養生している様子。4:3。差し替え可。 -->
+          <div class="media r-4x3"><img src="images/clean-01-protect.jpg" alt="家具にカバーをかけ、床にシートを敷いて養生する代表" width="1448" height="1086" loading="lazy" decoding="async"></div>
           <p class="phase">施工前</p>
           <h3>養生する</h3>
           <p>家具や床、荷物の通り道をしっかり養生してから作業に入ります。ホコリや傷から、生活空間を守ります。</p>
         </div>
         <div class="process__step">
-          <!-- PHOTO[clean-2]: その日の作業終わりの、片づけられた現場。4:3 -->
-          <div class="media r-4x3"><span class="media__ph"><span>整理された施工現場</span><small>PHOTO 4:3</small></span></div>
+          <!-- PHOTO[clean-2]: その日の作業終わりの、片づけられた現場。4:3。差し替え可。 -->
+          <div class="media r-4x3"><img src="images/clean-02-tidy.jpg" alt="道具や材料を棚に整理して片づけた、作業中の現場" width="1448" height="1086" loading="lazy" decoding="async"></div>
           <p class="phase">施工中</p>
           <h3>散らかさない</h3>
           <p>工具や材料を出しっぱなしにせず、その日の作業ごとに片づけます。現場をきれいに保ちながら進めます。</p>
         </div>
         <div class="process__step">
-          <!-- PHOTO[clean-3]: 施工後の清掃・粉じん除去・施工材のまとめ。4:3 -->
-          <div class="media r-4x3"><span class="media__ph"><span>施工後の清掃</span><small>PHOTO 4:3</small></span></div>
+          <!-- PHOTO[clean-3]: 施工後の清掃・粉じん除去・残材のまとめ。4:3。差し替え可。 -->
+          <div class="media r-4x3"><img src="images/clean-03-cleanup.jpg" alt="施工後の粉じんを掃除機で吸い、残材を袋にまとめる様子" width="1448" height="1086" loading="lazy" decoding="async"></div>
           <p class="phase">施工後</p>
           <h3>清掃する</h3>
           <p>施工で出たゴミや粉じん、残材まできれいに片づけます。仕上がりを一緒に確認して、お引き渡しします。</p>
@@ -773,44 +795,44 @@ a:hover { color: var(--color-primary-hover); }
       <div class="section-head" data-animate>
         <p class="eyebrow">Works</p>
         <h2 id="works-h">施工事例</h2>
-        <p class="lead">実際の施工を想定した事例です。地域・建物の種別・施工内容と、施工前後の様子を掲載しています。</p>
+        <p class="lead">実際の施工を想定した事例です。どんなお悩みだったか、施工期間、施工前後の様子を掲載しています。</p>
       </div>
 
       <div class="works-grid" data-animate>
         <!-- 事例を追加する場合は、この <article class="work"> ブロックを複製してください。 -->
         <article class="work">
           <div class="work__ba">
-            <figure><figcaption>施工前</figcaption><div class="media r-4x3"><span class="media__ph"><span>リビングのクロス（前）</span><small>4:3</small></span></div></figure>
-            <figure><figcaption>施工後</figcaption><div class="media r-4x3"><span class="media__ph"><span>リビングのクロス（後）</span><small>4:3</small></span></div></figure>
+            <figure><figcaption>施工前</figcaption><div class="media r-4x3"><img src="images/works-01-living-before.jpg" alt="張り替え前の、汚れて暗く見えるリビングのクロス" width="1448" height="1086" loading="lazy" decoding="async"></div></figure>
+            <figure><figcaption>施工後</figcaption><div class="media r-4x3"><img src="images/works-01-living-after.jpg" alt="白いクロスに張り替えて明るくなったリビング" width="1448" height="1086" loading="lazy" decoding="async"></div></figure>
           </div>
           <div class="work__body">
-            <p class="work__meta"><span>札幌市</span><span>戸建住宅</span></p>
+            <p class="work__meta"><span>札幌市</span><span>戸建住宅</span><span>施工期間：1日</span></p>
             <h3>リビングのクロス張り替え</h3>
-            <p>築年数の経過で汚れと日焼けが目立っていたリビングのクロスを、明るいホワイト系で全面張り替え。部屋全体が広く、明るく感じられる仕上がりになりました。</p>
+            <p>「汚れと日焼けで部屋が暗く見える」というご相談。明るいホワイト系で全面を張り替え、部屋全体が広く明るく感じられるようになりました。</p>
           </div>
         </article>
 
         <article class="work">
           <div class="work__ba">
-            <figure><figcaption>施工前</figcaption><div class="media r-4x3"><span class="media__ph"><span>洋室の床（前）</span><small>4:3</small></span></div></figure>
-            <figure><figcaption>施工後</figcaption><div class="media r-4x3"><span class="media__ph"><span>洋室の床（後）</span><small>4:3</small></span></div></figure>
+            <figure><figcaption>施工前</figcaption><div class="media r-4x3"><img src="images/works-02-floor-before.jpg" alt="傷みや色あせが目立つ、張り替え前の洋室の床" width="1448" height="1086" loading="lazy" decoding="async"></div></figure>
+            <figure><figcaption>施工後</figcaption><div class="media r-4x3"><img src="images/works-02-floor-after.jpg" alt="新しく張り替えて明るくなった洋室のフローリング" width="1448" height="1086" loading="lazy" decoding="async"></div></figure>
           </div>
           <div class="work__body">
-            <p class="work__meta"><span>札幌市</span><span>マンション</span></p>
-            <h3>クッションフロアの張り替え</h3>
-            <p>傷みとへこみが目立っていた洋室の床材を交換。家具を動かしながら1日で施工し、完了後には清掃まで実施しました。</p>
+            <p class="work__meta"><span>札幌市</span><span>マンション</span><span>施工期間：1日</span></p>
+            <h3>フローリングの張り替え</h3>
+            <p>「洋室の床の傷みや色あせが気になる」というご相談。室内の荷物を移動してから、1日でフローリングを張り替え、作業後は清掃まで行いました。</p>
           </div>
         </article>
 
         <article class="work">
           <div class="work__ba">
-            <figure><figcaption>施工前</figcaption><div class="media r-4x3"><span class="media__ph"><span>子ども部屋（前）</span><small>4:3</small></span></div></figure>
-            <figure><figcaption>施工後</figcaption><div class="media r-4x3"><span class="media__ph"><span>子ども部屋（後）</span><small>4:3</small></span></div></figure>
+            <figure><figcaption>施工前</figcaption><div class="media r-4x3"><img src="images/works-03-kidsroom-before.jpg" alt="改装前の、壁紙が傷んで暗い印象の部屋" width="1448" height="1086" loading="lazy" decoding="async"></div></figure>
+            <figure><figcaption>施工後</figcaption><div class="media r-4x3"><img src="images/works-03-kidsroom-after.jpg" alt="壁と床を一新し、淡い色のアクセント壁で明るくなった子ども部屋" width="1448" height="1086" loading="lazy" decoding="async"></div></figure>
           </div>
           <div class="work__body">
-            <p class="work__meta"><span>江別市</span><span>戸建住宅</span></p>
-            <h3>子ども部屋のクロス張り替え</h3>
-            <p>一面だけアクセントクロスを使った部分施工。全面リフォームをせずに、部屋の印象だけを変えました。</p>
+            <p class="work__meta"><span>江別市</span><span>戸建住宅</span><span>施工期間：2日</span></p>
+            <h3>子ども部屋の内装リフォーム</h3>
+            <p>「暗い印象の子ども部屋を明るくしたい」というご相談。壁と床を一新し、一面だけ淡い色でアクセントをつけて、やわらかい雰囲気の部屋にしました。</p>
           </div>
         </article>
       </div>
@@ -826,17 +848,18 @@ a:hover { color: var(--color-primary-hover); }
     <div class="container">
       <div class="two-col">
         <div class="col-media" data-animate>
-          <!-- PHOTO[owner]: 代表 北川直人。作業着・現場での自然な姿。3:4（縦）。堅い経営者写真にしない。 -->
-          <div class="media r-3x4"><span class="media__ph"><span>代表 北川 直人／作業中</span><small>PHOTO 3:4</small></span></div>
+          <!-- PHOTO[owner]: 代表 北川直人。作業着・現場での自然な姿。3:4（縦）。差し替え可。 -->
+          <div class="media r-3x4"><img src="images/owner.jpg" alt="作業着姿で現場に立つ代表 北川 直人" width="1086" height="1448" loading="lazy" decoding="async"></div>
         </div>
         <div class="col-text" data-animate>
           <p class="eyebrow">Owner</p>
           <h2 id="owner-h">代表者紹介</h2>
           <p style="margin-top: var(--space-16); font-weight: 700;">北川 直人（きたがわ なおと）／ノースリフォーム 代表</p>
+          <p style="margin-top: var(--space-16); font-size: var(--fs-h4); font-weight: 500;">ご相談から現地確認、仕上がりの確認まで、代表の北川が責任を持って立ち会います。</p>
           <div class="prose" style="margin-top: var(--space-24)">
             <p>内装の仕事を続けてきて感じるのは、リフォームには「知らない人を家に上げる」不安がついてまわる、ということです。だからこそ、誰が来て、どんなふうに作業するのかが分かることを大事にしています。</p>
-            <p>清掃や整理整頓にこだわるのも、「自分の家に入るならこうしてほしい」と思うことを、そのままやっているだけです。</p>
-            <p>「一面だけ」「ここだけ」という小さな工事も、できる限り対応しています。ご相談から施工、最後の確認まで私が伺いますので、まずは気軽に声をかけてください。</p>
+            <p>清掃や整理整頓にこだわるのも、「自分の家に入るならこうしてほしい」と思うことを、そのままやっているだけです。この考え方は、スタッフ全員で共有しています。</p>
+            <p>工事は内容に応じて、経験のあるスタッフや職人と分担します。「一面だけ」「ここだけ」という小さな工事も、できる限り対応していますので、まずは気軽に声をかけてください。</p>
           </div>
         </div>
       </div>
@@ -851,6 +874,7 @@ a:hover { color: var(--color-primary-hover); }
       <div class="section-head" data-animate>
         <p class="eyebrow">Flow</p>
         <h2 id="flow-h">ご相談から施工まで</h2>
+        <p class="lead">お見積もりは無料です。「6畳の壁紙と床でどのくらい？」といった、費用の目安だけのご相談でも構いません。</p>
       </div>
 
       <ol class="flow" data-animate>
@@ -864,15 +888,15 @@ a:hover { color: var(--color-primary-hover); }
         </li>
         <li class="flow__item">
           <span class="flow__num">STEP 03</span>
-          <div><h3>現地確認</h3><p>実際に施工箇所を見て、方法・ご希望・予算を一緒に相談します。</p></div>
+          <div><h3>現地確認</h3><p>代表を中心に施工箇所を確認し、方法・ご希望・予算を一緒に相談します。</p></div>
         </li>
         <li class="flow__item">
           <span class="flow__num">STEP 04</span>
-          <div><h3>お見積もり</h3><p>施工内容にもとづいてお見積もりをご提示します。内容にご納得いただいてから、正式なご依頼です。無理におすすめすることはありません。</p></div>
+          <div><h3>お見積もり</h3><p>作業ごとに内容と費用を分けて明記したお見積もりをお出しします。ご納得いただいてからの正式なご依頼で、その場で契約を迫ることはありません。お断りいただいても問題ありません。</p></div>
         </li>
         <li class="flow__item">
           <span class="flow__num">STEP 05</span>
-          <div><h3>施工</h3><p>周囲を養生し、できるだけ生活への影響を抑えながら作業します。</p></div>
+          <div><h3>施工</h3><p>内容に応じた担当者が、周囲を養生してから、生活への影響を抑えて作業します。</p></div>
         </li>
         <li class="flow__item">
           <span class="flow__num">STEP 06</span>
@@ -923,7 +947,7 @@ a:hover { color: var(--color-primary-hover); }
     <div class="container cta-band" data-animate>
       <p class="eyebrow">Contact</p>
       <h2 id="cta-h">まだ工事するか<span class="nw">決まっていなくても</span>大丈夫です。</h2>
-      <p>「こんなこと頼めるかな？」という段階から、お気軽にご相談ください。費用の目安だけでも構いません。</p>
+      <p>「こんなこと頼めるかな？」という段階から、お気軽にご相談ください。見積もりだけ・費用の目安だけのご相談でも構いませんし、そのあとお断りいただいても問題ありません。</p>
       <div class="cta-row">
         <a class="btn line" href="#contact">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.5 1.5 4.7 3.8 6.2-.2.7-.8 2.6-.9 3-.1.5.2.5.4.4.2-.1 2.9-1.9 4-2.7.9.1 1.8.2 2.7.2 5.5 0 10-3.6 10-8S17.5 3 12 3z"/></svg>
@@ -932,7 +956,7 @@ a:hover { color: var(--color-primary-hover); }
         <a class="btn primary" href="#contact">無料相談する</a>
         <a class="btn secondary" href="tel:00000000000">電話する</a>
       </div>
-      <p class="fine">LINEなら、施工したい場所の写真を送っていただけるとスムーズです。</p>
+      <p class="fine">LINEなら、気になる場所の写真を送るだけでも構いません。</p>
     </div>
   </section>
 
@@ -948,12 +972,28 @@ a:hover { color: var(--color-primary-hover); }
 
       <div class="faq" data-animate>
         <details>
-          <summary>小さな工事でもお願いできますか？</summary>
+          <summary>壁紙や床だけでも、お願いできますか？</summary>
           <div class="faq__a">はい。クロス一面の張り替えや、床の一部分の補修など、小規模な工事でもできる限り対応しています。まずはお気軽にご相談ください。</div>
         </details>
         <details>
+          <summary>費用の目安だけ知りたいのですが？</summary>
+          <div class="faq__a">「6畳の壁紙と床を変えたい」といったご相談で、費用の目安をお伝えできます。写真を送っていただけると、より具体的にご案内できます。正式なお見積もりは、現地確認のうえ無料でお出しします。</div>
+        </details>
+        <details>
           <summary>見積もりだけでも大丈夫ですか？</summary>
-          <div class="faq__a">はい。施工内容や今の状態を確認したうえで、お見積もりをご案内します。無理に契約をおすすめすることはありません。</div>
+          <div class="faq__a">はい。今の状態を確認したうえで、お見積もりをご案内します。「まだ工事するか迷っている」という段階でも構いませんし、ご相談後にお断りいただいても問題ありません。</div>
+        </details>
+        <details>
+          <summary>家具はそのままでも大丈夫ですか？</summary>
+          <div class="faq__a">大きな家具はこちらで動かします。こわれやすい物や貴重品だけ、事前に移動をお願いしています。</div>
+        </details>
+        <details>
+          <summary>子どもやペットがいても施工できますか？</summary>
+          <div class="faq__a">はい。在宅のままでも施工できます。作業する部屋を区切って進めますので、生活しながらのリフォームも可能です。ニオイの出る工程の日は、換気や短時間の外出をご案内することがあります。</div>
+        </details>
+        <details>
+          <summary>マンションでも対応できますか？</summary>
+          <div class="faq__a">はい。戸建・マンションのどちらも対応しています。マンションは管理規約の確認や工事の届け出が必要なことがあるので、あわせてご相談ください。</div>
         </details>
         <details>
           <summary>施工後の清掃もしてもらえますか？</summary>
@@ -961,11 +1001,7 @@ a:hover { color: var(--color-primary-hover); }
         </details>
         <details>
           <summary>日程について相談できますか？</summary>
-          <div class="faq__a">はい。個人で対応しているため予約状況にもよりますが、できる範囲で柔軟に調整します。</div>
-        </details>
-        <details>
-          <summary>まだ工事するか迷っている段階でも相談できますか？</summary>
-          <div class="faq__a">もちろんです。「こういう工事はできますか？」「費用感だけ知りたい」という段階でも構いません。</div>
+          <div class="faq__a">はい。少人数で対応しているため予約状況にもよりますが、できる範囲で柔軟に調整します。</div>
         </details>
         <details>
           <summary>対応エリア外でも相談できますか？</summary>
