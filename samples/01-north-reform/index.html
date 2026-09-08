@@ -296,13 +296,15 @@ a:hover { color: var(--color-primary-hover); }
   letter-spacing: 0.14em; color: var(--color-primary);
 }
 .two-col h3 { font-size: var(--fs-h3); margin-top: var(--space-8); }
+/* About / Owner / Area の見出しは section-head の外にあるため H2 スケールを明示（DESIGN.md §3） */
+.col-text > h2 { font-size: var(--fs-h2); letter-spacing: 0.04em; }
 .two-col .col-text p { margin-top: var(--space-16); text-wrap: pretty; word-break: auto-phrase; }
 
 /* ---------- problems ---------- */
 .problem-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: var(--color-border); border: var(--border); border-radius: var(--radius); overflow: hidden; }
 .problem-list li { background: var(--color-bg); padding: var(--space-24); display: flex; gap: var(--space-16); align-items: flex-start; }
 .problem-list li svg { flex: none; width: 20px; height: 20px; stroke: var(--color-secondary); margin-top: 3px; }
-.problem-list li span { font-size: var(--fs-body); }
+.problem-list li span { font-size: var(--fs-body); text-wrap: pretty; word-break: auto-phrase; }
 .problems-close { margin-top: var(--space-32); display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-24); }
 .problems-close p { font-size: var(--fs-h4); font-weight: 700; }
 @media (max-width: 767px) {
@@ -549,11 +551,11 @@ a:hover { color: var(--color-primary-hover); }
       <div class="two-col">
         <div class="col-text" data-animate>
           <p class="eyebrow">About</p>
-          <h2 id="about-h">工事だけではなく、その前後まで丁寧に。</h2>
+          <h2 id="about-h">工事だけではなく、<br>その前後まで丁寧に。</h2>
           <div class="prose" style="margin-top: var(--space-24)">
-            <p>ノースリフォームは、札幌市と近郊で、住宅と店舗の内装リフォーム・修繕を行っている個人店です。お問い合わせから現地確認、お見積もり、施工、そして施工後の清掃まで、代表の北川がひとりで担当します。</p>
-            <p>得意にしているのは、壁紙や床の張り替え、内装の補修といった、暮らしに身近な工事です。「一面だけ」「傷んだところだけ」という小さなご相談も歓迎しています。</p>
-            <p>工事の仕上がりだけでなく、作業中の整理整頓と、終わったあとの清掃まで含めて“ひとつの仕事”と考えています。</p>
+            <p>ノースリフォームは、札幌市と近郊で、住宅や店舗の内装リフォーム・修繕を行う個人店です。<span class="nw">お問い合わせ</span>から現地確認、お見積もり、施工、施工後の清掃まで、代表の北川がひとりで担当します。</p>
+            <p>得意にしているのは、壁紙や床の張り替え、内装の補修など、暮らしに身近な工事です。「一面だけ」「傷んだところだけ」という小さなご相談も歓迎しています。</p>
+            <p>仕上がりだけでなく、作業中の整理整頓や施工後の清掃までを、ひとつの仕事と考えています。</p>
           </div>
         </div>
         <div class="col-media" data-animate>
@@ -577,11 +579,9 @@ a:hover { color: var(--color-primary-hover); }
       </div>
 
       <ul class="problem-list" data-animate>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><span>壁紙が汚れてきた・黒ずみが気になる</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><span>クロスがめくれてきた・浮いてきた</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><span>壁紙の汚れ・黒ずみ、めくれや浮きが気になる</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><span>床が傷んできた、へこみ・きしみがある</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><span>部屋の一部分だけ、印象を変えたい</span></li>
-        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><span>中古で買った家を、きれいにしたい</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><span>小さな工事でも頼めるのか分からない</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><span>どこに相談すればいいのか分からない</span></li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><span>知らない業者を家に入れるのが少し不安</span></li>
@@ -686,7 +686,7 @@ a:hover { color: var(--color-primary-hover); }
         <div class="col-text">
           <p class="mini-num">01</p>
           <h3>清掃まで丁寧に</h3>
-          <p>施工前の養生から、作業中の整理整頓、そして施工後の清掃まで。ゴミや施工材を残さず、できるだけ施工前より気持ちよく感じていただける状態でお引き渡しします。ノースリフォームが、いちばん大切にしていることです。</p>
+          <p>施工前の養生から、作業中の整理整頓、施工後の清掃まで。施工後も気持ちよく過ごしていただける状態でお引き渡しします。ノースリフォームが、いちばん大切にしていることです。</p>
         </div>
       </div>
 
@@ -697,7 +697,7 @@ a:hover { color: var(--color-primary-hover); }
         <div class="col-text">
           <p class="mini-num">02</p>
           <h3>代表が直接対応</h3>
-          <p>お問い合わせ・現地確認・お見積もり・施工・確認まで、すべて代表の北川が担当します。担当者が途中で変わらないので、「営業に伝えたことが職人に届いていない」ということが起こりません。</p>
+          <p>お問い合わせから現地確認、お見積もり、施工、最後の確認まで、すべて代表の北川が担当します。担当者が途中で変わらないので、「営業に伝えたことが職人に届いていない」ということが起こりません。</p>
         </div>
       </div>
 
@@ -708,7 +708,7 @@ a:hover { color: var(--color-primary-hover); }
         <div class="col-text">
           <p class="mini-num">03</p>
           <h3>個人店だから柔軟</h3>
-          <p>小規模な修繕、一部分だけの施工、日程や予算のご相談にも、できる範囲で柔軟に対応します。「こんなことでも頼めますか？」というところから、どうぞお聞かせください。</p>
+          <p>日程や予算のご相談、一部分だけの施工にも、できる範囲で柔軟に対応します。「こんなことでも頼めますか？」というところから、お聞かせください。</p>
         </div>
       </div>
 
@@ -719,7 +719,7 @@ a:hover { color: var(--color-primary-hover); }
         <div class="col-text">
           <p class="mini-num">04</p>
           <h3>小さな工事も歓迎</h3>
-          <p>クロス一面だけ、床の一部分だけ、小さな補修だけ。大きな工事でなくても遠慮はいりません。むしろ、そうした工事こそ個人店の得意なところです。</p>
+          <p>クロス一面だけ、床の一部分だけ、小さな補修だけ。大きな工事でなくても遠慮はいりません。そうした工事こそ、個人店の得意なところです。</p>
         </div>
       </div>
     </div>
@@ -732,8 +732,8 @@ a:hover { color: var(--color-primary-hover); }
     <div class="container">
       <div class="section-head" data-animate>
         <p class="eyebrow">Clean Work</p>
-        <h2 id="clean-h">清掃までが、私たちの仕事です。</h2>
-        <p class="lead">リフォーム工事は、お客様が普段生活している場所に入って行う仕事です。だからノースリフォームでは、仕上がりと同じくらい「工事のあいだ」と「工事のあと」を大切にしています。</p>
+        <h2 id="clean-h">清掃までが、<span class="nw">ノースリフォームの仕事です。</span></h2>
+        <p class="lead">リフォーム工事は、お客様が生活している場所に入って行う仕事です。だから仕上がりと同じくらい、「工事のあいだ」と「工事のあと」を大切にしています。</p>
       </div>
 
       <div class="process" data-animate>
@@ -749,14 +749,14 @@ a:hover { color: var(--color-primary-hover); }
           <div class="media r-4x3"><span class="media__ph"><span>整理された施工現場</span><small>PHOTO 4:3</small></span></div>
           <p class="phase">施工中</p>
           <h3>散らかさない</h3>
-          <p>工具や材料を出しっぱなしにせず、その日の作業が終わるたびに片づけます。現場をきれいに保ちながら進めます。</p>
+          <p>工具や材料を出しっぱなしにせず、その日の作業ごとに片づけます。現場をきれいに保ちながら進めます。</p>
         </div>
         <div class="process__step">
           <!-- PHOTO[clean-3]: 施工後の清掃・粉じん除去・施工材のまとめ。4:3 -->
           <div class="media r-4x3"><span class="media__ph"><span>施工後の清掃</span><small>PHOTO 4:3</small></span></div>
           <p class="phase">施工後</p>
           <h3>清掃する</h3>
-          <p>施工で出たゴミや粉じんを清掃し、施工材を残しません。仕上がりを一緒に確認して、お引き渡しします。</p>
+          <p>施工で出たゴミや粉じん、残材まできれいに片づけます。仕上がりを一緒に確認して、お引き渡しします。</p>
         </div>
       </div>
 
@@ -834,10 +834,9 @@ a:hover { color: var(--color-primary-hover); }
           <h2 id="owner-h">代表者紹介</h2>
           <p style="margin-top: var(--space-16); font-weight: 700;">北川 直人（きたがわ なおと）／ノースリフォーム 代表</p>
           <div class="prose" style="margin-top: var(--space-24)">
-            <p>内装の仕事を続けてきて感じるのは、リフォームは「知らない人を家に上げる」不安とセットだ、ということです。だからこそ、誰が来て、どんなふうに作業するのかが分かることを大事にしています。</p>
-            <p>清掃や整理整頓にこだわるのは、特別なことをしているつもりはなく、「自分の家に入るならこうしてほしい」と思うことを、そのままやっているだけです。</p>
-            <p>小さな工事だからと、お断りすることはしません。「一面だけ」「ここだけ」というご相談こそ、個人店の得意なところだと思っています。</p>
-            <p>ご相談から施工、最後の確認まで、私が伺います。まずは気軽に声をかけてください。</p>
+            <p>内装の仕事を続けてきて感じるのは、リフォームには「知らない人を家に上げる」不安がついてまわる、ということです。だからこそ、誰が来て、どんなふうに作業するのかが分かることを大事にしています。</p>
+            <p>清掃や整理整頓にこだわるのも、「自分の家に入るならこうしてほしい」と思うことを、そのままやっているだけです。</p>
+            <p>「一面だけ」「ここだけ」という小さな工事も、できる限り対応しています。ご相談から施工、最後の確認まで私が伺いますので、まずは気軽に声をかけてください。</p>
           </div>
         </div>
       </div>
@@ -923,7 +922,7 @@ a:hover { color: var(--color-primary-hover); }
   <section class="section band bg-accent" aria-labelledby="cta-h">
     <div class="container cta-band" data-animate>
       <p class="eyebrow">Contact</p>
-      <h2 id="cta-h">まだ工事するか決まっていなくても大丈夫です。</h2>
+      <h2 id="cta-h">まだ工事するか<span class="nw">決まっていなくても</span>大丈夫です。</h2>
       <p>「こんなこと頼めるかな？」という段階から、お気軽にご相談ください。費用の目安だけでも構いません。</p>
       <div class="cta-row">
         <a class="btn line" href="#contact">
@@ -958,7 +957,7 @@ a:hover { color: var(--color-primary-hover); }
         </details>
         <details>
           <summary>施工後の清掃もしてもらえますか？</summary>
-          <div class="faq__a">はい。施工後の清掃まで含めて、ひとつの仕事と考えています。できるだけ気持ちよく生活に戻っていただける状態でお引き渡しします。</div>
+          <div class="faq__a">はい。施工後の清掃までを、ひとつの仕事と考えています。仕上がりを一緒に確認してからお引き渡しします。</div>
         </details>
         <details>
           <summary>日程について相談できますか？</summary>
