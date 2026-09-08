@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PromeonWeb — Web制作ポートフォリオ</title>
+<meta name="description" content="PromeonWeb は、店舗・士業・製造業といった小規模事業者のためのWeb制作です。デザインから実装、公開後の運用までを一人で担当します。">
+<meta property="og:title" content="PromeonWeb — Web制作ポートフォリオ">
+<meta property="og:description" content="店舗・士業・製造業のためのWeb制作。ヒアリング設計からデザイン、実装、公開後の運用まで一人で担当します。">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="_ds/modernist-b3b88146-6bed-4fb1-84db-471975131e54/styles.css">
+<style>
+  /* Page-level type overrides (carried over from the design canvas helmet) */
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--color-bg); color: var(--color-text);
+    font-family: "Archivo", "Zen Kaku Gothic New", system-ui, sans-serif;
+    font-feature-settings: "palt" 1; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, h4 { font-family: "Archivo", "Zen Kaku Gothic New", system-ui, sans-serif; margin: 0; }
+  p { margin: 0; }
+  a { color: var(--color-accent-700); text-decoration: none; }
+  a:hover { color: var(--color-accent); }
+  input, select, textarea, button { font-family: inherit; }
+  ::selection { background: var(--color-accent-200); }
+  [hidden] { display: none !important; }
+
+  /* Sticky-header offset for in-page anchors */
+  #top, #works, #about, #contact { scroll-margin-top: 72px; }
+
+  /* Hover states — translated from the canvas's style-hover attributes into real CSS */
+  .btn-hero-primary:hover { background: var(--color-accent-600); color: #fff; }
+  .btn-hero-outline:hover { background: var(--color-text); color: var(--color-bg); }
+  .btn-reset:hover { background: var(--color-text); color: var(--color-bg); }
+  .btn-submit:hover { background: var(--color-accent-600); border-color: var(--color-accent-600); }
+  .field-input:focus-visible { outline: 2px solid var(--color-accent); }
+
+  /* Portfolio media: real photograph where supplied, a labelled placeholder otherwise */
+  .work-media { position: relative; aspect-ratio: 4 / 3; filter: grayscale(1); background: var(--color-neutral-200); }
+  .work-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .work-media.is-empty { border: 1px solid var(--color-neutral-400); }
+  .work-media .ph { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
+  .work-media .ph span { font-size: 13px; font-weight: 700; letter-spacing: 0.14em; color: var(--color-neutral-600); }
+  .work-media .ph small { font-size: 11px; letter-spacing: 0.16em; color: var(--color-neutral-500); }
+  /* keep a sentence's closing clause from breaking into a 1-2 character orphan line */
+  .nw { white-space: nowrap; }
+
+  /* Portfolio thumbnails link through to each sample site */
+  .work-media-link { display: block; position: relative; overflow: hidden; text-decoration: none; color: inherit; }
+  .work-media-link .work-media { transition: filter .3s ease; }
+  .work-media-link:hover .work-media,
+  .work-media-link:focus-visible .work-media { filter: grayscale(0); }
+  .work-media-link::after {
+    content: "サンプルを見る →"; position: absolute; left: 0; bottom: 0;
+    padding: 10px 16px; background: var(--color-accent); color: #fff;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.08em;
+    transform: translateY(100%); transition: transform .25s ease; }
+  .work-media-link:hover::after,
+  .work-media-link:focus-visible::after { transform: translateY(0); }
+  .work-media-link:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; }
+
+  /* ======================================================================
+     Header / navigation (desktop bar + mobile hamburger)
+     ====================================================================== */
+  .site-header { position: sticky; top: 0; z-index: 30; background: var(--color-bg);
+    border-bottom: 2px solid var(--color-text); }
+  .site-header__inner { max-width: 1180px; margin: 0 auto; padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .site-header__brand { color: var(--color-text); font-weight: 900; font-size: 19px; letter-spacing: -0.02em; }
+  .site-nav { display: flex; gap: 28px; font-size: 13px; font-weight: 600; letter-spacing: 0.04em; }
+  .site-nav a { color: var(--color-text); }
+  .site-nav a:hover { color: var(--color-accent); }
+  .nav-toggle { display: none; }
+
+  /* Hero: wide copy column on the left, CTAs pushed to the right edge */
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 56px;
+    margin-top: 56px; padding-top: 32px; border-top: 2px solid var(--color-text); align-items: start; }
+  .hero-cta { justify-self: end; }
+
+  /* ======================================================================
+     Responsive — progressive tightening of rhythm and type by breakpoint
+     ====================================================================== */
+  @media (max-width: 960px) {
+    #top { padding-top: 76px; padding-bottom: 56px; }
+    #works { padding-top: 52px; padding-bottom: 72px; }
+    #about > div, #contact > div { padding-top: 60px; padding-bottom: 60px; }
+  }
+
+  @media (max-width: 820px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 32px; }
+    .hero-cta { justify-self: start; }
+  }
+
+  @media (max-width: 720px) {
+    .nav-toggle { display: flex; flex-direction: column; justify-content: center; gap: 5px;
+      width: 44px; height: 44px; padding: 0; margin: -6px -8px -6px 0;
+      background: transparent; border: 0; cursor: pointer; }
+    .nav-toggle .nav-toggle__bar { width: 24px; height: 2px; background: var(--color-text);
+      transition: transform .2s ease, opacity .15s ease; }
+    .nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(2) { opacity: 0; }
+    .nav-toggle[aria-expanded="true"] .nav-toggle__bar:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .site-nav { position: absolute; top: 100%; left: 0; right: 0;
+      flex-direction: column; gap: 0; padding: 2px 24px 12px;
+      background: var(--color-bg); border-bottom: 2px solid var(--color-text);
+      transform: translateY(-6px); opacity: 0; pointer-events: none;
+      transition: transform .18s ease, opacity .18s ease; }
+    .site-nav a { padding: 15px 2px; font-size: 15px; letter-spacing: 0.08em; }
+    .site-nav a + a { border-top: 1px solid var(--color-neutral-300); }
+    .site-header.is-open .site-nav { transform: translateY(0); opacity: 1; pointer-events: auto; }
+  }
+
+  @media (max-width: 640px) {
+    .site-header__inner,
+    #top, #works,
+    #about > div, #contact > div,
+    footer > div { padding-left: 20px; padding-right: 20px; }
+
+    #top { padding-top: 52px; padding-bottom: 44px; }
+    #works { padding-top: 44px; padding-bottom: 56px; }
+    #about > div, #contact > div { padding-top: 48px; padding-bottom: 48px; }
+
+    .site-header__brand { font-size: 17px; }
+
+    #top > p:first-of-type { font-size: 11px !important; letter-spacing: 0.14em !important; margin-bottom: 24px !important; }
+    .hero-grid { margin-top: 40px !important; padding-top: 24px !important; }
+    .hero-grid p { font-size: 15px !important; line-height: 1.9 !important; }
+
+    .sec-head { gap: 12px !important; flex-wrap: wrap !important; }
+
+    #works article { margin-top: 36px !important; padding-top: 24px !important; gap: 24px !important; }
+    #about p { line-height: 1.95 !important; }
+
+    /* keep form controls >= 16px so iOS does not zoom on focus */
+    .field-input { font-size: 16px !important; }
+  }
+
+  @media (max-width: 460px) {
+    .hero-cta { width: 100%; flex-direction: column; align-items: stretch !important; }
+    .hero-cta a { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<div style="min-height:100vh; background:var(--color-bg)">
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="#top" class="site-header__brand">PromeonWeb</a>
+      <button type="button" class="nav-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+      <nav id="site-nav" class="site-nav">
+        <a href="#works">WORKS</a>
+        <a href="#about">ABOUT</a>
+        <a href="#contact">CONTACT</a>
+      </nav>
+    </div>
+  </header>
+
+  <section id="top" style="max-width:1180px; margin:0 auto; padding:96px 24px 72px">
+    <p style="font-size:13px; font-weight:700; letter-spacing:0.18em; color:var(--color-accent-700); margin-bottom:32px">WEB PRODUCTION PORTFOLIO</p>
+    <h1 style="font-size:clamp(30px,7vw,84px); font-weight:900; line-height:1.14; letter-spacing:-0.02em; max-width:16em; text-wrap:balance">新しい火を灯し、未来を切り拓く。</h1>
+    <div class="hero-grid">
+      <div style="display:flex; flex-direction:column; gap:20px; max-width:44em">
+        <p style="font-size:16px; line-height:2">PromeonWebは、店舗・士業・製造業をはじめとした、小規模事業者・中小企業のためのWeb制作サービスです。デザインからコーディング、公開作業、その後の更新や運用までを一人で担当し、事業の特徴や強み、そこで働く人の想いまでが、見る人にきちんと伝わるWebサイトをつくります。</p>
+        <p style="font-size:16px; line-height:2">制作では、早いレスポンスとスピード感のある進行を大切にしています。制作工程を効率化することで費用を抑え、価格以上の品質を感じてもらえる「低価格・高品質」なWeb制作を目指しています。</p>
+      </div>
+      <div class="hero-cta" style="display:flex; gap:12px; align-items:flex-start; flex-wrap:wrap">
+        <a class="btn-hero-primary" href="#works" style="display:inline-flex; align-items:center; padding:14px 24px; background:var(--color-accent); color:#fff; font-weight:700; font-size:15px; white-space:nowrap">ポートフォリオを見る</a>
+        <a class="btn-hero-outline" href="#contact" style="display:inline-flex; align-items:center; padding:14px 24px; border:2px solid var(--color-text); color:var(--color-text); font-weight:700; font-size:15px; white-space:nowrap">お問い合わせ</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="works" style="max-width:1180px; margin:0 auto; padding:64px 24px 96px">
+    <div class="sec-head" style="display:flex; align-items:baseline; gap:20px; padding-bottom:20px; border-bottom:2px solid var(--color-text)">
+      <span style="font-size:13px; font-weight:800; letter-spacing:0.12em; color:var(--color-accent)">01</span>
+      <h2 style="font-size:clamp(24px,4.6vw,40px); font-weight:900; letter-spacing:-0.01em">ポートフォリオ</h2>
+      <span style="font-size:13px; font-weight:600; letter-spacing:0.12em; color:var(--color-neutral-700)">WORKS</span>
+    </div>
+    <div style="display:flex; flex-direction:column; gap:14px; margin-top:20px; max-width:60em">
+      <p style="font-size:14px; line-height:1.9; color:var(--color-neutral-800)">掲載しているWebサイトは、すべて架空の会社や事業者を設定して制作したサンプルサイトです。実在する企業からご依頼いただいた案件ではありませんが、実際の制作案件を想定し、業種や事業内容、ターゲット、強み、必要なページ構成などを設定したうえで、ヒアリング設計から情報整理、デザイン、実装まで、実案件と同じ流れを意識して制作しています。</p>
+      <p style="font-size:14px; line-height:1.9; color:var(--color-neutral-800)">単なるデザインサンプルではなく、実際に依頼した場合の「サイトの見た目」「情報の伝わり方」「必要な制作内容」「おおよその料金」までイメージできるポートフォリオを目指しています。</p>
+    </div>
+
+    <article style="border-top:2px solid var(--color-text); margin-top:48px; padding-top:32px; display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:40px; align-items:start">
+      <a class="work-media-link" href="samples/01-north-reform/" aria-label="炭火焼鳥 ひなた のサンプルサイトを見る">
+        <div class="work-media">
+          <img src="assets/works/work-1.webp" alt="炭火焼鳥 ひなた のサンプルサイト — 店内写真">
+        </div>
+      </a>
+      <div>
+        <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px">
+          <span style="font-size:13px; font-weight:800; letter-spacing:0.1em; color:var(--color-accent)">01</span>
+          <span style="display:inline-block; padding:5px 10px; border:1px solid var(--color-neutral-400); font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--color-neutral-800); white-space:nowrap; flex-shrink:0">飲食店・店舗</span>
+        </div>
+        <h3 style="font-size:clamp(22px,2.6vw,30px); font-weight:900; line-height:1.35; letter-spacing:-0.01em">炭火焼鳥 ひなた</h3>
+        <p style="font-size:14px; font-weight:600; color:var(--color-neutral-700); margin-top:8px">店舗サイト（架空）</p>
+        <div style="margin-top:20px; max-width:36em; display:flex; flex-direction:column; gap:14px">
+          <p style="font-size:15px; line-height:1.95; text-wrap:pretty; word-break:auto-phrase">カウンター中心の十数席ほどの小さな焼鳥店を想定したサンプルです。近くで働く会社員や、記念日に落ち着いて食事をしたい二人客を<span class="nw">主な来店者に設定しました。</span></p>
+          <p style="font-size:15px; line-height:1.95; text-wrap:pretty; word-break:auto-phrase">一番伝えたいのは「席数が少なく、予約して行く店」という前提です。料理写真を大きく見せるより先に、炭火の香りや暗めの店内といった雰囲気が伝わるようにし、初めてでも<span class="nw">入りやすい印象を優先しました。</span></p>
+          <p style="font-size:15px; line-height:1.95; text-wrap:pretty; word-break:auto-phrase">メニューを全部見なくても予約に進めるよう、電話とネット予約のボタンは常に画面の下に固定しています。短い問い合わせや当日の予約につなげることを<span class="nw">目的にしたサイトです。</span></p>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:32px; margin-top:40px; padding-top:20px; border-top:1px solid var(--color-neutral-300)">
+          <div>
+            <p style="font-size:12px; font-weight:700; letter-spacing:0.12em; color:var(--color-neutral-700)">ページ数</p>
+            <p style="font-size:17px; font-weight:800; margin-top:6px">5ページ</p>
+          </div>
+          <div>
+            <p style="font-size:12px; font-weight:700; letter-spacing:0.12em; color:var(--color-neutral-700)">制作期間</p>
+            <p style="font-size:17px; font-weight:800; margin-top:6px">4週間</p>
+          </div>
+          <div>
+            <p style="font-size:12px; font-weight:700; letter-spacing:0.12em; color:var(--color-neutral-700)">総額</p>
+            <p style="font-size:17px; font-weight:800; margin-top:6px; color:var(--color-accent-700)">12万円</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article style="border-top:2px solid var(--color-text); margin-top:48px; padding-top:32px; display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:40px; align-items:start">
+      <a class="work-media-link" href="samples/02-sakura-zeirishi/" aria-label="佐倉税理士事務所 のサンプルサイトを見る">
+        <div class="work-media is-empty">
+          <div class="ph"><span>事務所写真</span><small>IMAGE</small></div>
+        </div>
+      </a>
+      <div>
+        <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px">
+          <span style="font-size:13px; font-weight:800; letter-spacing:0.1em; color:var(--color-accent)">02</span>
+          <span style="display:inline-block; padding:5px 10px; border:1px solid var(--color-neutral-400); font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--color-neutral-800); white-space:nowrap; flex-shrink:0">士業</span>
+        </div>
+        <h3 style="font-size:clamp(22px,2.6vw,30px); font-weight:900; line-height:1.35; letter-spacing:-0.01em">佐倉税理士事務所</h3>
+        <p style="font-size:14px; font-weight:600; color:var(--color-neutral-700); margin-top:8px">コーポレートサイト（架空）</p>
+        <div style="margin-top:20px; max-width:36em; display:flex; flex-direction:column; gap:14px">
+          <p style="font-size:15px; line-height:1.95; text-wrap:pretty; word-break:auto-phrase">相続の相談と、中小企業の決算・顧問業務を扱う個人事務所を想定したサンプルです。身近に相談できる相手を探す相続人や、初めて税理士に依頼する小さな会社の<span class="nw">経営者が対象です。</span></p>
+          <p style="font-size:15px; line-height:1.95; text-wrap:pretty; word-break:auto-phrase">士業のサイトでつまずきやすい「相談したらいくらかかるのか分からない」という不安に応えるため、料金表より先に費用の考え方と、初回相談から契約までの<span class="nw">流れを説明しています。</span></p>
+          <p style="font-size:15px; line-height:1.95; text-wrap:pretty; word-break:auto-phrase">デザインは余白と文字組みで信頼感を優先しました。導線は「まず無料の初回相談を予約する」一点に絞り、電話・メール・フォームのどれからでも同じ場所に<span class="nw">たどり着くようにしています。</span></p>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:32px; margin-top:40px; padding-top:20px; border-top:1px solid var(--color-neutral-300)">
+          <div>
+            <p style="font-size:12px; font-weight:700; letter-spacing:0.12em; color:var(--color-neutral-700)">ページ数</p>
+            <p style="font-size:17px; font-weight:800; margin-top:6px">8ページ</p>
+          </div>
+          <div>
+            <p style="font-size:12px; font-weight:700; letter-spacing:0.12em; color:var(--color-neutral-700)">制作期間</p>
+            <p style="font-size:17px; font-weight:800; margin-top:6px">6週間</p>
+          </div>
+          <div>
+            <p style="font-size:12px; font-weight:700; letter-spacing:0.12em; color:var(--color-neutral-700)">総額</p>
+            <p style="font-size:17px; font-weight:800; margin-top:6px; color:var(--color-accent-700)">18万円</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article style="border-top:2px solid var(--color-text); margin-top:48px; padding-top:32px; display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:40px; align-items:start">
+      <a class="work-media-link" href="samples/03-yamato-kensetsu/" aria-label="大和建設工業 のサンプルサイトを見る">
+        <div class="work-media is-empty">
+          <div class="ph"><span>施工写真</span><small>IMAGE</small></div>
+        </div>
+      </a>
+      <div>
+        <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px">
+          <span style="font-size:13px; font-weight:800; letter-spacing:0.1em; color:var(--color-accent)">03</span>
+          <span style="display:inline-block; padding:5px 10px; border:1px solid var(--color-neutral-400); font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--color-neutral-800); white-space:nowrap; flex-shrink:0">建設・製造</span>
+        </div>
+        <h3 style="font-size:clamp(22px,2.6vw,30px); font-weight:900; line-height:1.35; letter-spacing:-0.01em">大和建設工業</h3>
+        <p style="font-size:14px; font-weight:600; color:var(--color-neutral-700); margin-top:8px">コーポレートサイト（架空）</p>
+        <div style="margin-top:20px; max-width:36em; display:flex; flex-direction:column; gap:14px">
+          <p style="font-size:15px; line-height:1.95; text-wrap:pretty; word-break:auto-phrase">公共工事を主軸に、民間の土木・建築も手がける地域の建設会社を想定したサンプルです。発注元となる自治体や<span class="nw">元請け企業</span>の担当者と、地元での就職を考える求職者の<span class="nw">両方に向けています。</span></p>
+          <p style="font-size:15px; line-height:1.95; text-wrap:pretty; word-break:auto-phrase">信用を判断される材料は施工実績です。実績を「道路」「造成」「建築」といった工種で絞り込めるようにし、規模や工期がひと目で分かる形に整理しました。写真は<span class="nw">堅実さが伝わるトーンです。</span></p>
+          <p style="font-size:15px; line-height:1.95; text-wrap:pretty; word-break:auto-phrase">採用情報は別サイトに分けず、会社概要から続けて読める位置に置きました。行政・<span class="nw">元請け</span>からの問い合わせと、採用へのエントリーの両方を受け止めることを<span class="nw">目的としたサイトです。</span></p>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:32px; margin-top:40px; padding-top:20px; border-top:1px solid var(--color-neutral-300)">
+          <div>
+            <p style="font-size:12px; font-weight:700; letter-spacing:0.12em; color:var(--color-neutral-700)">ページ数</p>
+            <p style="font-size:17px; font-weight:800; margin-top:6px">12ページ</p>
+          </div>
+          <div>
+            <p style="font-size:12px; font-weight:700; letter-spacing:0.12em; color:var(--color-neutral-700)">制作期間</p>
+            <p style="font-size:17px; font-weight:800; margin-top:6px">8週間</p>
+          </div>
+          <div>
+            <p style="font-size:12px; font-weight:700; letter-spacing:0.12em; color:var(--color-neutral-700)">総額</p>
+            <p style="font-size:17px; font-weight:800; margin-top:6px; color:var(--color-accent-700)">26万円</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article style="border-top:2px solid var(--color-text); margin-top:48px; padding-top:32px; display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:40px; align-items:start">
+      <a class="work-media-link" href="samples/04-luno/" aria-label="hair salon LUNO のサンプルサイトを見る">
+        <div class="work-media is-empty">
+          <div class="ph"><span>スタイル写真</span><small>IMAGE</small></div>
+        </div>
+      </a>
+      <div>
+        <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px">
+          <span style="font-size:13px; font-weight:800; letter-spacing:0.1em; color:var(--color-accent)">04</span>
+          <span style="display:inline-block; padding:5px 10px; border:1px solid var(--color-neutral-400); font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--color-neutral-800); white-space:nowrap; flex-shrink:0">美容室・サロン</span>
+        </div>
+        <h3 style="font-size:clamp(22px,2.6vw,30px); font-weight:900; line-height:1.35; letter-spacing:-0.01em">hair salon LUNO</h3>
+        <p style="font-size:14px; font-weight:600; color:var(--color-neutral-700); margin-top:8px">店舗サイト（架空）</p>
+        <div style="margin-top:20px; max-width:36em; display:flex; flex-direction:column; gap:14px">
+          <p style="font-size:15px; line-height:1.95; text-wrap:pretty; word-break:auto-phrase">スタイリスト3名で運営する、住宅街の小さな美容室を想定したサンプルです。仕事や子育ての合間に通いやすい店を探している、20〜40代の女性を中心の<span class="nw">客層に設定しました。</span></p>
+          <p style="font-size:15px; line-height:1.95; text-wrap:pretty; word-break:auto-phrase">美容室選びで最後の決め手になるのは、仕上がりのイメージです。そこでスタイル写真を主役に置き、文章や飾りは控えめにして、色数を抑えた落ち着いたデザインで<span class="nw">写真を引き立てています。</span></p>
+          <p style="font-size:15px; line-height:1.95; text-wrap:pretty; word-break:auto-phrase">予約は外部システムを使う前提のため、どのページを見ていても予約ボタンが目に入るよう画面に固定しています。気になったスタイルを見つけたその場で予約に進めることを<span class="nw">目的にしたサイトです。</span></p>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:32px; margin-top:40px; padding-top:20px; border-top:1px solid var(--color-neutral-300)">
+          <div>
+            <p style="font-size:12px; font-weight:700; letter-spacing:0.12em; color:var(--color-neutral-700)">ページ数</p>
+            <p style="font-size:17px; font-weight:800; margin-top:6px">6ページ</p>
+          </div>
+          <div>
+            <p style="font-size:12px; font-weight:700; letter-spacing:0.12em; color:var(--color-neutral-700)">制作期間</p>
+            <p style="font-size:17px; font-weight:800; margin-top:6px">5週間</p>
+          </div>
+          <div>
+            <p style="font-size:12px; font-weight:700; letter-spacing:0.12em; color:var(--color-neutral-700)">総額</p>
+            <p style="font-size:17px; font-weight:800; margin-top:6px; color:var(--color-accent-700)">15万円</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article style="border-top:2px solid var(--color-text); margin-top:48px; padding-top:32px; display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:40px; align-items:start">
+      <a class="work-media-link" href="samples/05-shinonome/" aria-label="鮨と天ぷら 東雲 のサンプルサイトを見る">
+        <div class="work-media is-empty">
+          <div class="ph"><span>料理写真</span><small>IMAGE</small></div>
+        </div>
+      </a>
+      <div>
+        <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px">
+          <span style="font-size:13px; font-weight:800; letter-spacing:0.1em; color:var(--color-accent)">05</span>
+          <span style="display:inline-block; padding:5px 10px; border:1px solid var(--color-neutral-400); font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--color-neutral-800); white-space:nowrap; flex-shrink:0">飲食店・店舗</span>
+        </div>
+        <h3 style="font-size:clamp(22px,2.6vw,30px); font-weight:900; line-height:1.35; letter-spacing:-0.01em">鮨と天ぷら 東雲</h3>
+        <p style="font-size:14px; font-weight:600; color:var(--color-neutral-700); margin-top:8px">ランディングページ（架空）</p>
+        <div style="margin-top:20px; max-width:36em; display:flex; flex-direction:column; gap:14px">
+          <p style="font-size:15px; line-height:1.95; text-wrap:pretty; word-break:auto-phrase">コース料理だけで営業する、少し改まった席で使われることを想定した割烹のランディングページです。接待や顔合わせ、記念日など、失敗したくない場面で<span class="nw">店を探している人が対象です。</span></p>
+          <p style="font-size:15px; line-height:1.95; text-wrap:pretty; word-break:auto-phrase">この価格帯で離脱が起きるのは、金額が分からないまま読み進めて不安になったときです。コース内容とひとりあたりの料金を上部ではっきり示し、まず金額に<span class="nw">納得してもらう構成にしました。</span></p>
+          <p style="font-size:15px; line-height:1.95; text-wrap:pretty; word-break:auto-phrase">1ページのなかで、料理・店内の雰囲気・アクセス・予約までを迷わず読み進められる順に並べています。読み終えた人がそのまま電話やフォームで日時を相談できることを<span class="nw">目的にしたページです。</span></p>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:32px; margin-top:40px; padding-top:20px; border-top:1px solid var(--color-neutral-300)">
+          <div>
+            <p style="font-size:12px; font-weight:700; letter-spacing:0.12em; color:var(--color-neutral-700)">ページ数</p>
+            <p style="font-size:17px; font-weight:800; margin-top:6px">1ページ</p>
+          </div>
+          <div>
+            <p style="font-size:12px; font-weight:700; letter-spacing:0.12em; color:var(--color-neutral-700)">制作期間</p>
+            <p style="font-size:17px; font-weight:800; margin-top:6px">3週間</p>
+          </div>
+          <div>
+            <p style="font-size:12px; font-weight:700; letter-spacing:0.12em; color:var(--color-neutral-700)">総額</p>
+            <p style="font-size:17px; font-weight:800; margin-top:6px; color:var(--color-accent-700)">9万円</p>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <article style="border-top:2px solid var(--color-text); margin-top:48px; padding-top:32px; display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:40px; align-items:start">
+      <a class="work-media-link" href="samples/06-hojo-shoshi/" aria-label="北条司法書士法人 のサンプルサイトを見る">
+        <div class="work-media is-empty">
+          <div class="ph"><span>オフィス写真</span><small>IMAGE</small></div>
+        </div>
+      </a>
+      <div>
+        <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px">
+          <span style="font-size:13px; font-weight:800; letter-spacing:0.1em; color:var(--color-accent)">06</span>
+          <span style="display:inline-block; padding:5px 10px; border:1px solid var(--color-neutral-400); font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--color-neutral-800); white-space:nowrap; flex-shrink:0">士業</span>
+        </div>
+        <h3 style="font-size:clamp(22px,2.6vw,30px); font-weight:900; line-height:1.35; letter-spacing:-0.01em">北条司法書士法人</h3>
+        <p style="font-size:14px; font-weight:600; color:var(--color-neutral-700); margin-top:8px">コーポレートサイト（架空）</p>
+        <div style="margin-top:20px; max-width:36em; display:flex; flex-direction:column; gap:14px">
+          <p style="font-size:15px; line-height:1.95; text-wrap:pretty; word-break:auto-phrase">不動産や会社の登記手続きを中心に扱う司法書士法人を想定したサンプルです。相続の名義変更や住宅購入時の登記など、一生に数回の手続きを初めて依頼する<span class="nw">個人が主な読み手です。</span></p>
+          <p style="font-size:15px; line-height:1.95; text-wrap:pretty; word-break:auto-phrase">初めての依頼で不安になる「何を用意すればいいのか」「結局いくらかかるのか」に応え、依頼内容ごとに必要な書類と費用の目安を一覧にまとめ、問い合わせる前に<span class="nw">確認できるようにしました。</span></p>
+          <p style="font-size:15px; line-height:1.95; text-wrap:pretty; word-break:auto-phrase">文字を大きめにとり、専門用語には短い言い換えを添えて、法律に詳しくない人でも読み進められることを重視。「自分の場合はどうなるか」を電話やフォームで<span class="nw">相談してもらうサイトです。</span></p>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:32px; margin-top:40px; padding-top:20px; border-top:1px solid var(--color-neutral-300)">
+          <div>
+            <p style="font-size:12px; font-weight:700; letter-spacing:0.12em; color:var(--color-neutral-700)">ページ数</p>
+            <p style="font-size:17px; font-weight:800; margin-top:6px">9ページ</p>
+          </div>
+          <div>
+            <p style="font-size:12px; font-weight:700; letter-spacing:0.12em; color:var(--color-neutral-700)">制作期間</p>
+            <p style="font-size:17px; font-weight:800; margin-top:6px">6週間</p>
+          </div>
+          <div>
+            <p style="font-size:12px; font-weight:700; letter-spacing:0.12em; color:var(--color-neutral-700)">総額</p>
+            <p style="font-size:17px; font-weight:800; margin-top:6px; color:var(--color-accent-700)">16万円</p>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section id="about" style="border-top:2px solid var(--color-text); background:var(--color-surface)">
+    <div style="max-width:1180px; margin:0 auto; padding:80px 24px">
+      <div class="sec-head" style="display:flex; align-items:baseline; gap:20px; padding-bottom:20px; border-bottom:2px solid var(--color-text)">
+        <span style="font-size:13px; font-weight:800; letter-spacing:0.12em; color:var(--color-accent)">02</span>
+        <h2 style="font-size:clamp(24px,4.6vw,40px); font-weight:900; letter-spacing:-0.01em">自己紹介</h2>
+        <span style="font-size:13px; font-weight:600; letter-spacing:0.12em; color:var(--color-neutral-700)">ABOUT</span>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:48px; margin-top:40px">
+        <div>
+          <h3 style="font-size:clamp(20px,2.4vw,28px); font-weight:900; line-height:1.6">PromeonWebは、「新しい火を灯し、未来を切り拓く。」という想いを込めて名付けました。</h3>
+          <p style="font-size:15px; line-height:2.05; margin-top:24px">フリーランスのWeb制作者として、個人事業主や中小企業を中心に、ホームページやサービスサイト、採用サイトなどの制作に取り組んでいます。</p>
+          <p style="font-size:15px; line-height:2.05; margin-top:20px">サイトのデザインだけではなく、事業内容や強みの整理、ページ構成の設計、文章や導線の検討、実装、公開まで一貫して対応しています。見た目を整えるだけではなく、「この会社は何をしているのか」「どんな強みがあるのか」が、初めてサイトを見る人にも分かりやすく伝わることを大切にしています。</p>
+          <p style="font-size:15px; line-height:2.05; margin-top:20px">また、特に力を入れているのが採用サイトの制作です。会社側が伝えたい情報だけではなく、求職者が「仕事内容は？」「どんな人が働いている？」「職場の雰囲気は？」「自分に合いそうか？」といった、応募前に知りたい情報を整理し、Webサイトを通して分かりやすく伝えることを意識しています。</p>
+          <p style="font-size:15px; line-height:2.05; margin-top:20px">制作時のコミュニケーションでは、スピード感も大切にしています。お問い合わせやご連絡には、可能な限り早く対応し、基本的には1時間以内の返信を心掛けています。</p>
+          <p style="font-size:15px; line-height:2.05; margin-top:20px">Webサイトを通して、事業の魅力や働く人の想いを伝え、その先の問い合わせや採用につながるきっかけをつくること。それがPromeonWebの目指すWeb制作です。</p>
+        </div>
+        <div>
+          <div style="border-top:2px solid var(--color-text); padding-top:20px">
+            <h3 style="font-size:clamp(20px,2.4vw,26px); font-weight:900; letter-spacing:-0.01em; line-height:1.3; margin:0">進め方</h3>
+            <ol style="list-style:none; margin:22px 0 0; padding:0">
+              <li style="display:flex; gap:14px; align-items:baseline; padding:13px 0; border-top:1px solid var(--color-neutral-300)">
+                <span style="flex-shrink:0; font-size:13px; font-weight:800; letter-spacing:0.08em; color:var(--color-accent)">01</span>
+                <span style="font-size:14px; font-weight:700; line-height:1.6">無料相談・無料お見積もり</span>
+              </li>
+              <li style="display:flex; gap:14px; align-items:baseline; padding:13px 0; border-top:1px solid var(--color-neutral-300)">
+                <span style="flex-shrink:0; font-size:13px; font-weight:800; letter-spacing:0.08em; color:var(--color-accent)">02</span>
+                <span style="font-size:14px; font-weight:700; line-height:1.6">正式なご依頼・ご契約</span>
+              </li>
+              <li style="display:flex; gap:14px; align-items:baseline; padding:13px 0; border-top:1px solid var(--color-neutral-300)">
+                <span style="flex-shrink:0; font-size:13px; font-weight:800; letter-spacing:0.08em; color:var(--color-accent)">03</span>
+                <span style="font-size:14px; font-weight:700; line-height:1.6">詳細ヒアリング</span>
+              </li>
+              <li style="display:flex; gap:14px; align-items:baseline; padding:13px 0; border-top:1px solid var(--color-neutral-300)">
+                <span style="flex-shrink:0; font-size:13px; font-weight:800; letter-spacing:0.08em; color:var(--color-accent)">04</span>
+                <span style="font-size:14px; font-weight:700; line-height:1.6">構成案のご提示</span>
+              </li>
+              <li style="display:flex; gap:14px; align-items:baseline; padding:13px 0; border-top:1px solid var(--color-neutral-300)">
+                <span style="flex-shrink:0; font-size:13px; font-weight:800; letter-spacing:0.08em; color:var(--color-accent)">05</span>
+                <span style="font-size:14px; font-weight:700; line-height:1.6">デザイン・実装</span>
+              </li>
+              <li style="display:flex; gap:14px; align-items:baseline; padding:13px 0; border-top:1px solid var(--color-neutral-300)">
+                <span style="flex-shrink:0; font-size:13px; font-weight:800; letter-spacing:0.08em; color:var(--color-accent)">06</span>
+                <span style="font-size:14px; font-weight:700; line-height:1.6">完成サイトのご確認</span>
+              </li>
+              <li style="display:flex; gap:14px; align-items:baseline; padding:13px 0; border-top:1px solid var(--color-neutral-300)">
+                <span style="flex-shrink:0; font-size:13px; font-weight:800; letter-spacing:0.08em; color:var(--color-accent)">07</span>
+                <span style="font-size:14px; font-weight:700; line-height:1.6">修正対応（プランにより回数が異なります）</span>
+              </li>
+              <li style="display:flex; gap:14px; align-items:baseline; padding:13px 0; border-top:1px solid var(--color-neutral-300); border-bottom:1px solid var(--color-neutral-300)">
+                <span style="flex-shrink:0; font-size:13px; font-weight:800; letter-spacing:0.08em; color:var(--color-accent)">08</span>
+                <span style="font-size:14px; font-weight:700; line-height:1.6">公開・納品</span>
+              </li>
+            </ol>
+            <p style="font-size:15px; line-height:2.05; margin-top:24px">ご相談から公開までは、内容やページ数にもよりますが、<strong style="font-weight:800">おおむね1週間〜1か月程度</strong>を目安としています。</p>
+            <p style="font-size:15px; line-height:2.05; margin-top:20px">まずはヒアリングを行い、ご希望や事業内容を整理したうえで、サイト構成案とお見積もりをご確認いただきます。内容にご納得いただいた後、デザイン・実装へと進み、確認や修正を重ねながら公開まで進行していきます。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="border-top:2px solid var(--color-text)">
+    <div style="max-width:1180px; margin:0 auto; padding:80px 24px">
+      <div class="sec-head" style="display:flex; align-items:baseline; gap:20px; padding-bottom:20px; border-bottom:2px solid var(--color-text)">
+        <span style="font-size:13px; font-weight:800; letter-spacing:0.12em; color:var(--color-accent-700)">03</span>
+        <h2 style="font-size:clamp(24px,4.6vw,40px); font-weight:900; letter-spacing:-0.01em">お問い合わせ</h2>
+        <span style="font-size:13px; font-weight:600; letter-spacing:0.12em; color:var(--color-neutral-700)">CONTACT</span>
+      </div>
+
+      <div style="margin-top:40px">
+
+        <div style="max-width:620px">
+          <p style="font-size:15px; line-height:2; max-width:34em">ご相談内容が固まっていない段階でも構いません。2営業日以内にご返信します。</p>
+
+          <div id="contact-done" hidden style="margin-top:32px; background:var(--color-surface); border:2px solid var(--color-text); padding:32px 28px">
+            <h3 style="font-size:22px; font-weight:900">送信いただき、ありがとうございます。</h3>
+            <p style="font-size:15px; line-height:2; margin-top:16px">内容を確認のうえ、2営業日以内にご返信いたします。</p>
+            <button id="contact-reset" type="button" class="btn-reset" style="margin-top:24px; padding:12px 20px; border:2px solid var(--color-text); background:transparent; color:var(--color-text); font-weight:700; font-size:14px; cursor:pointer; white-space:nowrap">別の内容で送る</button>
+          </div>
+
+          <!-- Wire `action` to a form endpoint (e.g. Formspree / a mail handler) for production delivery. -->
+          <form id="contact-form" action="#" method="post" style="margin-top:32px; display:flex; flex-direction:column; gap:24px">
+            <label style="display:flex; flex-direction:column; gap:8px">
+              <span style="font-size:13px; font-weight:700; letter-spacing:0.06em">お名前<span style="color:var(--color-accent-700)">（必須）</span></span>
+              <input class="field-input" name="name" type="text" required style="padding:13px 14px; border:2px solid var(--color-text); background:var(--color-bg); color:var(--color-text); font-size:15px; outline-offset:2px">
+            </label>
+            <label style="display:flex; flex-direction:column; gap:8px">
+              <span style="font-size:13px; font-weight:700; letter-spacing:0.06em">会社名・屋号</span>
+              <input class="field-input" name="company" type="text" style="padding:13px 14px; border:2px solid var(--color-text); background:var(--color-bg); color:var(--color-text); font-size:15px; outline-offset:2px">
+            </label>
+            <label style="display:flex; flex-direction:column; gap:8px">
+              <span style="font-size:13px; font-weight:700; letter-spacing:0.06em">メールアドレス<span style="color:var(--color-accent-700)">（必須）</span></span>
+              <input class="field-input" name="email" type="email" required style="padding:13px 14px; border:2px solid var(--color-text); background:var(--color-bg); color:var(--color-text); font-size:15px; outline-offset:2px">
+            </label>
+            <label style="display:flex; flex-direction:column; gap:8px">
+              <span style="font-size:13px; font-weight:700; letter-spacing:0.06em">電話番号</span>
+              <input class="field-input" name="tel" type="tel" style="padding:13px 14px; border:2px solid var(--color-text); background:var(--color-bg); color:var(--color-text); font-size:15px; outline-offset:2px">
+            </label>
+            <label style="display:flex; flex-direction:column; gap:8px">
+              <span style="font-size:13px; font-weight:700; letter-spacing:0.06em">既存のWebサイト</span>
+              <input class="field-input" name="website" type="url" placeholder="https://" style="padding:13px 14px; border:2px solid var(--color-text); background:var(--color-bg); color:var(--color-text); font-size:15px; outline-offset:2px">
+            </label>
+            <label style="display:flex; flex-direction:column; gap:8px">
+              <span style="font-size:13px; font-weight:700; letter-spacing:0.06em">ご依頼内容</span>
+              <select class="field-input" name="request" style="padding:13px 14px; border:2px solid var(--color-text); background:var(--color-bg); color:var(--color-text); font-size:15px; outline-offset:2px">
+                <option>コーポレートサイトの新規制作</option>
+                <option>ランディングページの制作</option>
+                <option>既存サイトのリニューアル</option>
+                <option>部分的な修正・更新</option>
+                <option>まだ決まっていない</option>
+              </select>
+            </label>
+            <label style="display:flex; flex-direction:column; gap:8px">
+              <span style="font-size:13px; font-weight:700; letter-spacing:0.06em">ご予算</span>
+              <select class="field-input" name="budget" style="padding:13px 14px; border:2px solid var(--color-text); background:var(--color-bg); color:var(--color-text); font-size:15px; outline-offset:2px">
+                <option>10万円未満</option>
+                <option>10〜20万円</option>
+                <option>20〜30万円</option>
+                <option>30〜50万円</option>
+                <option>50万円以上</option>
+                <option>相談したい</option>
+              </select>
+            </label>
+            <label style="display:flex; flex-direction:column; gap:8px">
+              <span style="font-size:13px; font-weight:700; letter-spacing:0.06em">お問い合わせ内容</span>
+              <textarea class="field-input" name="message" rows="6" style="padding:13px 14px; border:2px solid var(--color-text); background:var(--color-bg); color:var(--color-text); font-size:15px; outline-offset:2px; resize:vertical"></textarea>
+            </label>
+            <div>
+              <button type="submit" class="btn-submit" style="padding:16px 32px; background:var(--color-accent); color:#fff; border:2px solid var(--color-accent); font-weight:800; font-size:15px; cursor:pointer; white-space:nowrap">送信する</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer style="border-top:2px solid var(--color-text)">
+    <div style="max-width:1180px; margin:0 auto; padding:32px 24px; display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; align-items:center">
+      <span style="font-weight:900; font-size:16px">PromeonWeb</span>
+      <span style="font-size:12px; letter-spacing:0.08em; color:var(--color-neutral-700)">© 2026 PromeonWeb</span>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  (function () {
+    /* --- Mobile navigation (hamburger) --- */
+    var header = document.querySelector('.site-header');
+    var toggle = document.querySelector('.nav-toggle');
+    var nav = document.getElementById('site-nav');
+    if (header && toggle && nav) {
+      var setNav = function (open) {
+        header.classList.toggle('is-open', open);
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        toggle.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+      };
+      toggle.addEventListener('click', function () {
+        setNav(!header.classList.contains('is-open'));
+      });
+      nav.addEventListener('click', function (e) {
+        if (e.target.closest('a')) setNav(false);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') setNav(false);
+      });
+      window.addEventListener('resize', function () {
+        if (window.innerWidth > 720) setNav(false);
+      });
+    }
+
+    /* --- Contact form --- */
+    var form = document.getElementById('contact-form');
+    var done = document.getElementById('contact-done');
+    var reset = document.getElementById('contact-reset');
+
+    if (form) {
+      form.addEventListener('submit', function (e) {
+        // No backend is wired yet — swap this for a real submission (fetch to a
+        // form endpoint) and keep the confirmation panel as the success state.
+        e.preventDefault();
+        if (!form.reportValidity()) return;
+        form.hidden = true;
+        done.hidden = false;
+        done.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+
+    if (reset) {
+      reset.addEventListener('click', function () {
+        form.reset();
+        done.hidden = true;
+        form.hidden = false;
+        form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+  })();
+</script>
+
+</body>
+</html>

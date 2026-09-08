@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="_ds/modernist-b3b88146-6bed-4fb1-84db-471975131e54/styles.css">
+<script src="_ds/modernist-b3b88146-6bed-4fb1-84db-471975131e54/_ds_bundle.js"></script>
+<script src="./image-slot.js"></script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--color-bg); color: var(--color-text);
+    font-family: "Archivo", "Zen Kaku Gothic New", system-ui, sans-serif;
+    font-feature-settings: "palt" 1; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, h4 { font-family: "Archivo", "Zen Kaku Gothic New", system-ui, sans-serif; margin: 0; }
+  p { margin: 0; }
+  a { color: var(--color-accent-700); text-decoration: none; }
+  a:hover { color: var(--color-accent); }
+  input, select, textarea, button { font-family: inherit; }
+  ::selection { background: var(--color-accent-200); }
+</style>
+</helmet>
+
+<div style="min-height:100vh; background:var(--color-bg)">
+
+  <header style="position:sticky; top:0; z-index:20; background:var(--color-bg); border-bottom:2px solid var(--color-text)">
+    <div style="max-width:1180px; margin:0 auto; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; gap:24px">
+      <a href="#top" style="color:var(--color-text); font-weight:900; font-size:19px; letter-spacing:-0.02em">PromeonWeb</a>
+      <nav style="display:flex; gap:28px; flex-wrap:wrap; font-size:13px; font-weight:600; letter-spacing:0.04em">
+        <a href="#works" style="color:var(--color-text)">WORKS</a>
+        <a href="#about" style="color:var(--color-text)">ABOUT</a>
+        <a href="#skills" style="color:var(--color-text)">SKILLS</a>
+        <a href="#contact" style="color:var(--color-text)">CONTACT</a>
+      </nav>
+    </div>
+  </header>
+
+  <section id="top" style="max-width:1180px; margin:0 auto; padding:96px 24px 72px">
+    <p style="font-size:13px; font-weight:700; letter-spacing:0.18em; color:var(--color-accent-700); margin-bottom:32px">WEB PRODUCTION PORTFOLIO</p>
+    <h1 style="font-size:clamp(38px,6.6vw,88px); font-weight:900; line-height:1.12; letter-spacing:-0.02em; max-width:16em; text-wrap:balance">新しい火を灯し、未来を切り拓く。</h1>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:40px; margin-top:56px; padding-top:32px; border-top:2px solid var(--color-text)">
+      <p style="font-size:16px; line-height:2; max-width:34em">PromeonWeb は、店舗・士業・製造業といった小規模事業者のためのWeb制作です。デザインから実装、公開後の運用までを一人で担当し、事業の輪郭がそのまま伝わるサイトをつくります。</p>
+      <div style="display:flex; gap:12px; align-items:flex-start; flex-wrap:wrap">
+        <a href="#works" style="display:inline-flex; align-items:center; padding:14px 24px; background:var(--color-accent); color:#fff; font-weight:700; font-size:15px; white-space:nowrap" style-hover="background:var(--color-accent-600)">ポートフォリオを見る</a>
+        <a href="#contact" style="display:inline-flex; align-items:center; padding:14px 24px; border:2px solid var(--color-text); color:var(--color-text); font-weight:700; font-size:15px; white-space:nowrap" style-hover="background:var(--color-text); color:var(--color-bg)">お問い合わせ</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="works" style="max-width:1180px; margin:0 auto; padding:64px 24px 96px">
+    <div style="display:flex; align-items:baseline; gap:20px; padding-bottom:20px; border-bottom:2px solid var(--color-text)">
+      <sc-if value="{{ sectionNumbers }}" hint-placeholder-val="{{ true }}">
+        <span style="font-size:13px; font-weight:800; letter-spacing:0.12em; color:var(--color-accent)">01</span>
+      </sc-if>
+      <h2 style="font-size:clamp(26px,3.4vw,40px); font-weight:900; letter-spacing:-0.01em">ポートフォリオ</h2>
+      <span style="font-size:13px; font-weight:600; letter-spacing:0.12em; color:var(--color-neutral-700)">WORKS</span>
+    </div>
+    <p style="font-size:14px; line-height:1.9; color:var(--color-neutral-800); margin-top:20px; max-width:44em">掲載しているサイトはすべて架空の会社を設定して制作したサンプルです。実在する企業の案件ではありませんが、実案件と同じ工程でヒアリング設計からデザイン、実装まで行っています。</p>
+
+    <sc-for list="{{ works }}" as="w" hint-placeholder-count="6">
+      <article style="border-top:2px solid var(--color-text); margin-top:48px; padding-top:32px; display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:40px; align-items:start">
+        <div style="position:relative; aspect-ratio:4/3; filter:grayscale(1); background:var(--color-neutral-200)">
+          <image-slot id="work-{{ w.id }}" shape="rect" placeholder="{{ w.slotHint }}"></image-slot>
+        </div>
+        <div>
+          <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px">
+            <span style="font-size:13px; font-weight:800; letter-spacing:0.1em; color:var(--color-accent)">{{ w.no }}</span>
+            <span style="display:inline-block; padding:5px 10px; border:1px solid var(--color-neutral-400); font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--color-neutral-800); white-space:nowrap; flex-shrink:0">{{ w.industry }}</span>
+          </div>
+          <h3 style="font-size:clamp(22px,2.6vw,30px); font-weight:900; line-height:1.35; letter-spacing:-0.01em">{{ w.name }}</h3>
+          <p style="font-size:14px; font-weight:600; color:var(--color-neutral-700); margin-top:8px">{{ w.type }}</p>
+          <p style="font-size:15px; line-height:1.95; margin-top:20px; max-width:36em">{{ w.summary }}</p>
+          <sc-if value="{{ showScope }}" hint-placeholder-val="{{ true }}">
+            <div style="margin-top:24px">
+              <p style="font-size:12px; font-weight:700; letter-spacing:0.12em; color:var(--color-neutral-700); margin-bottom:10px">使用ツール・AI</p>
+              <div style="display:flex; flex-wrap:wrap; gap:8px">
+                <sc-for list="{{ w.scope }}" as="s" hint-placeholder-count="4">
+                  <span style="display:inline-block; padding:6px 11px; background:var(--color-neutral-200); font-size:12px; font-weight:600; white-space:nowrap">{{ s }}</span>
+                </sc-for>
+              </div>
+            </div>
+          </sc-if>
+          <div style="display:flex; flex-wrap:wrap; gap:32px; margin-top:28px; padding-top:20px; border-top:1px solid var(--color-neutral-300)">
+            <div>
+              <p style="font-size:12px; font-weight:700; letter-spacing:0.12em; color:var(--color-neutral-700)">ページ数</p>
+              <p style="font-size:17px; font-weight:800; margin-top:6px">{{ w.pages }}</p>
+            </div>
+            <div>
+              <p style="font-size:12px; font-weight:700; letter-spacing:0.12em; color:var(--color-neutral-700)">制作期間</p>
+              <p style="font-size:17px; font-weight:800; margin-top:6px">{{ w.duration }}</p>
+            </div>
+            <sc-if value="{{ showPrice }}" hint-placeholder-val="{{ true }}">
+              <div>
+                <p style="font-size:12px; font-weight:700; letter-spacing:0.12em; color:var(--color-neutral-700)">総額</p>
+                <p style="font-size:17px; font-weight:800; margin-top:6px; color:var(--color-accent-700)">{{ w.price }}</p>
+              </div>
+            </sc-if>
+          </div>
+        </div>
+      </article>
+    </sc-for>
+  </section>
+
+  <section id="about" style="border-top:2px solid var(--color-text); background:var(--color-surface)">
+    <div style="max-width:1180px; margin:0 auto; padding:80px 24px">
+      <div style="display:flex; align-items:baseline; gap:20px; padding-bottom:20px; border-bottom:2px solid var(--color-text)">
+        <sc-if value="{{ sectionNumbers }}" hint-placeholder-val="{{ true }}">
+          <span style="font-size:13px; font-weight:800; letter-spacing:0.12em; color:var(--color-accent)">02</span>
+        </sc-if>
+        <h2 style="font-size:clamp(26px,3.4vw,40px); font-weight:900; letter-spacing:-0.01em">自己紹介</h2>
+        <span style="font-size:13px; font-weight:600; letter-spacing:0.12em; color:var(--color-neutral-700)">ABOUT</span>
+      </div>
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:48px; margin-top:40px">
+        <div>
+          <h3 style="font-size:clamp(20px,2.4vw,28px); font-weight:900; line-height:1.6">屋号は PromeonWeb。<br>火を運ぶ、という意味を込めています。</h3>
+          <p style="font-size:15px; line-height:2.05; margin-top:24px">フリーランスのWeb制作者として、コーポレートサイトやランディングページの制作を行っています。ヒアリングから構成、デザイン、コーディング、公開後の更新までを一貫して担当するため、途中で意図が抜け落ちることがありません。</p>
+          <p style="font-size:15px; line-height:2.05; margin-top:20px">得意としているのは、店舗や士業、製造業のように「一度会って話せば伝わる強み」を持つ事業者のサイトです。その強みを、はじめて訪れた人にも同じ順番で伝わるように設計します。</p>
+        </div>
+        <div>
+          <div style="border-top:2px solid var(--color-text); padding-top:20px">
+            <p style="font-size:12px; font-weight:700; letter-spacing:0.12em; color:var(--color-neutral-700)">対応できること</p>
+            <ul style="margin:16px 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:12px">
+              <li style="font-size:15px; line-height:1.7; padding-left:18px; border-left:2px solid var(--color-accent)">サイト設計・ワイヤーフレーム</li>
+              <li style="font-size:15px; line-height:1.7; padding-left:18px; border-left:2px solid var(--color-accent)">デザイン（PC・スマートフォン）</li>
+              <li style="font-size:15px; line-height:1.7; padding-left:18px; border-left:2px solid var(--color-accent)">コーディング・WordPress実装</li>
+              <li style="font-size:15px; line-height:1.7; padding-left:18px; border-left:2px solid var(--color-accent)">公開作業・公開後の更新対応</li>
+            </ul>
+          </div>
+          <div style="border-top:2px solid var(--color-text); padding-top:20px; margin-top:32px">
+            <p style="font-size:12px; font-weight:700; letter-spacing:0.12em; color:var(--color-neutral-700)">進め方</p>
+            <p style="font-size:15px; line-height:2.05; margin-top:14px">ご相談から公開までは、おおむね1〜2か月です。ヒアリング後に構成案と見積りをお出しし、ご確認いただいてから制作に入ります。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" style="border-top:2px solid var(--color-text)">
+    <div style="max-width:1180px; margin:0 auto; padding:80px 24px">
+      <div style="display:flex; align-items:baseline; gap:20px; padding-bottom:20px; border-bottom:2px solid var(--color-text)">
+        <sc-if value="{{ sectionNumbers }}" hint-placeholder-val="{{ true }}">
+          <span style="font-size:13px; font-weight:800; letter-spacing:0.12em; color:var(--color-accent-700)">03</span>
+        </sc-if>
+        <h2 style="font-size:clamp(26px,3.4vw,40px); font-weight:900; letter-spacing:-0.01em">お問い合わせ</h2>
+        <span style="font-size:13px; font-weight:600; letter-spacing:0.12em; color:var(--color-neutral-700)">CONTACT</span>
+      </div>
+
+      <div style="display:flex; flex-wrap:wrap; gap:56px; margin-top:40px; align-items:flex-start">
+
+        <div style="flex:2 1 340px; min-width:300px">
+          <p style="font-size:15px; line-height:2; max-width:34em">ご相談内容が固まっていない段階でも構いません。2営業日以内にご返信します。</p>
+
+          <sc-if value="{{ submitted }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:32px; background:var(--color-surface); border:2px solid var(--color-text); padding:32px 28px">
+              <h3 style="font-size:22px; font-weight:900">送信いただき、ありがとうございます。</h3>
+              <p style="font-size:15px; line-height:2; margin-top:16px">内容を確認のうえ、2営業日以内にご返信いたします。</p>
+              <button type="button" onClick="{{ resetForm }}" style="margin-top:24px; padding:12px 20px; border:2px solid var(--color-text); background:transparent; color:var(--color-text); font-weight:700; font-size:14px; cursor:pointer; white-space:nowrap" style-hover="background:var(--color-text); color:var(--color-bg)">別の内容で送る</button>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ formOpen }}" hint-placeholder-val="{{ true }}">
+            <form onSubmit="{{ handleSubmit }}" style="margin-top:32px; display:flex; flex-direction:column; gap:24px">
+          <label style="display:flex; flex-direction:column; gap:8px">
+            <span style="font-size:13px; font-weight:700; letter-spacing:0.06em">お名前<span style="color:var(--color-accent-700)">（必須）</span></span>
+            <input type="text" required style="padding:13px 14px; border:2px solid var(--color-text); background:var(--color-bg); color:var(--color-text); font-size:15px; outline-offset:2px">
+          </label>
+          <label style="display:flex; flex-direction:column; gap:8px">
+            <span style="font-size:13px; font-weight:700; letter-spacing:0.06em">会社名・屋号</span>
+            <input type="text" style="padding:13px 14px; border:2px solid var(--color-text); background:var(--color-bg); color:var(--color-text); font-size:15px; outline-offset:2px">
+          </label>
+          <label style="display:flex; flex-direction:column; gap:8px">
+            <span style="font-size:13px; font-weight:700; letter-spacing:0.06em">メールアドレス<span style="color:var(--color-accent-700)">（必須）</span></span>
+            <input type="email" required style="padding:13px 14px; border:2px solid var(--color-text); background:var(--color-bg); color:var(--color-text); font-size:15px; outline-offset:2px">
+          </label>
+          <label style="display:flex; flex-direction:column; gap:8px">
+            <span style="font-size:13px; font-weight:700; letter-spacing:0.06em">電話番号</span>
+            <input type="tel" style="padding:13px 14px; border:2px solid var(--color-text); background:var(--color-bg); color:var(--color-text); font-size:15px; outline-offset:2px">
+          </label>
+          <label style="display:flex; flex-direction:column; gap:8px">
+            <span style="font-size:13px; font-weight:700; letter-spacing:0.06em">既存のWebサイト</span>
+            <input type="url" placeholder="https://" style="padding:13px 14px; border:2px solid var(--color-text); background:var(--color-bg); color:var(--color-text); font-size:15px; outline-offset:2px">
+          </label>
+          <label style="display:flex; flex-direction:column; gap:8px">
+            <span style="font-size:13px; font-weight:700; letter-spacing:0.06em">ご依頼内容</span>
+            <select style="padding:13px 14px; border:2px solid var(--color-text); background:var(--color-bg); color:var(--color-text); font-size:15px; outline-offset:2px">
+              <option>コーポレートサイトの新規制作</option>
+              <option>ランディングページの制作</option>
+              <option>既存サイトのリニューアル</option>
+              <option>部分的な修正・更新</option>
+              <option>まだ決まっていない</option>
+            </select>
+          </label>
+          <label style="display:flex; flex-direction:column; gap:8px">
+            <span style="font-size:13px; font-weight:700; letter-spacing:0.06em">ご予算</span>
+            <select style="padding:13px 14px; border:2px solid var(--color-text); background:var(--color-bg); color:var(--color-text); font-size:15px; outline-offset:2px">
+              <option>10万円未満</option>
+              <option>10〜20万円</option>
+              <option>20〜30万円</option>
+              <option>30〜50万円</option>
+              <option>50万円以上</option>
+              <option>相談したい</option>
+            </select>
+          </label>
+          <label style="display:flex; flex-direction:column; gap:8px">
+            <span style="font-size:13px; font-weight:700; letter-spacing:0.06em">お問い合わせ内容</span>
+            <textarea rows="6" style="padding:13px 14px; border:2px solid var(--color-text); background:var(--color-bg); color:var(--color-text); font-size:15px; outline-offset:2px; resize:vertical"></textarea>
+          </label>
+              <div>
+                <button type="submit" style="padding:16px 32px; background:var(--color-accent); color:#fff; border:2px solid var(--color-accent); font-weight:800; font-size:15px; cursor:pointer; white-space:nowrap" style-hover="background:var(--color-accent-600); border-color:var(--color-accent-600)">送信する</button>
+              </div>
+            </form>
+          </sc-if>
+        </div>
+
+        <div id="skills" style="flex:1 1 280px; min-width:260px; border-top:2px solid var(--color-text); padding-top:24px">
+          <div style="display:flex; align-items:baseline; gap:14px">
+            <h3 style="font-size:20px; font-weight:900; letter-spacing:-0.01em">使用技術・ツール</h3>
+            <span style="font-size:12px; font-weight:600; letter-spacing:0.12em; color:var(--color-neutral-700)">SKILLS</span>
+          </div>
+          <div style="display:flex; flex-direction:column; margin-top:8px">
+            <sc-for list="{{ skillGroups }}" as="g" hint-placeholder-count="4">
+              <div style="padding:24px 0; border-bottom:1px solid var(--color-neutral-300)">
+                <p style="font-size:12px; font-weight:700; letter-spacing:0.12em; color:var(--color-accent-700)">{{ g.label }}</p>
+                <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:14px">
+                  <sc-for list="{{ g.items }}" as="i" hint-placeholder-count="4">
+                    <span style="display:inline-block; padding:8px 12px; border:1px solid var(--color-neutral-400); font-size:13px; font-weight:600; white-space:nowrap">{{ i }}</span>
+                  </sc-for>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <footer style="border-top:2px solid var(--color-text)">
+    <div style="max-width:1180px; margin:0 auto; padding:32px 24px; display:flex; flex-wrap:wrap; gap:16px; justify-content:space-between; align-items:center">
+      <span style="font-weight:900; font-size:16px">PromeonWeb</span>
+      <span style="font-size:12px; letter-spacing:0.08em; color:var(--color-neutral-700)">© 2026 PromeonWeb</span>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showPrice&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;実績の表示&quot;},&quot;showScope&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;実績の表示&quot;},&quot;sectionNumbers&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;レイアウト&quot;}}">
+class Component extends DCLogic {
+  state = { submitted: false };
+
+  works() {
+    return [
+      { id: 1, no: "01", industry: "飲食店・店舗", name: "炭火焼鳥 ひなた", type: "店舗サイト（架空）",
+        summary: "架空の焼鳥店を設定して制作したサンプルサイトです。席数が限られる店のため、メニューよりも予約導線と雰囲気の伝達を先に置きました。",
+        scope: ["Figma", "VS Code", "WordPress", "Claude Code"], pages: "5ページ", duration: "4週間", price: "12万円", slotHint: "店内写真" },
+      { id: 2, no: "02", industry: "士業", name: "佐倉税理士事務所", type: "コーポレートサイト（架空）",
+        summary: "架空の税理士事務所を設定して制作したサンプルサイトです。相続と法人決算を扱う事務所を想定し、相談前の不安を減らすため料金の考え方と面談の流れをトップページに置いています。",
+        scope: ["Figma", "VS Code", "ChatGPT", "Claude Code"], pages: "8ページ", duration: "6週間", price: "18万円", slotHint: "事務所写真" },
+      { id: 3, no: "03", industry: "建設・製造", name: "大和建設工業", type: "コーポレートサイト（架空）",
+        summary: "架空の建設会社を設定して制作したサンプルサイトです。公共工事を主軸とする会社を想定し、施工実績を工種で絞り込めるようにし、採用ページを同じ導線内に収めています。",
+        scope: ["Figma", "VS Code", "WordPress", "Claude Code", "ChatGPT"], pages: "12ページ", duration: "8週間", price: "26万円", slotHint: "施工写真" },
+      { id: 4, no: "04", industry: "美容室・サロン", name: "hair salon LUNO", type: "店舗サイト（架空）",
+        summary: "架空の美容室を設定して制作したサンプルサイトです。スタイリスト3名のサロンを想定し、スタイル写真を主役に据え、外部予約システムへの導線を全ページに固定しています。",
+        scope: ["Figma", "Photoshop", "VS Code", "Claude Code"], pages: "6ページ", duration: "5週間", price: "15万円", slotHint: "スタイル写真" },
+      { id: 5, no: "05", industry: "飲食店・店舗", name: "鮨と天ぷら 東雲", type: "ランディングページ（架空）",
+        summary: "架空の割烹を設定して制作したサンプルのランディングページです。価格帯が伝わらないまま離脱されないよう、コース内容と金額を上部に置きました。",
+        scope: ["Figma", "VS Code", "ChatGPT"], pages: "1ページ", duration: "3週間", price: "9万円", slotHint: "料理写真" },
+      { id: 6, no: "06", industry: "士業", name: "北条司法書士法人", type: "コーポレートサイト（架空）",
+        summary: "架空の司法書士法人を設定して制作したサンプルサイトです。登記業務を中心とする事務所を想定し、依頼内容ごとに必要書類と費用の目安をまとめ、問い合わせ前に確認できる構成にしています。",
+        scope: ["Figma", "VS Code", "WordPress", "Claude Code"], pages: "9ページ", duration: "6週間", price: "16万円", slotHint: "オフィス写真" }
+    ];
+  }
+
+  renderVals() {
+    const submitted = this.state.submitted;
+    return {
+      works: this.works(),
+      skillGroups: [
+        { label: "マークアップ・実装", items: ["HTML", "CSS", "Sass", "JavaScript", "jQuery"] },
+        { label: "CMS", items: ["WordPress", "自作テーマ", "カスタムフィールド"] },
+        { label: "デザイン", items: ["Figma", "Photoshop", "Illustrator"] },
+        { label: "AI・開発支援", items: ["Claude Code", "ChatGPT", "GitHub Copilot", "Cursor"] }
+      ],
+      showPrice: this.props.showPrice ?? true,
+      showScope: this.props.showScope ?? true,
+      sectionNumbers: this.props.sectionNumbers ?? true,
+      submitted,
+      formOpen: !submitted,
+      handleSubmit: (e) => { e.preventDefault(); this.setState({ submitted: true }); },
+      resetForm: () => this.setState({ submitted: false })
+    };
+  }
+}
+</script>
+</body>
+</html>

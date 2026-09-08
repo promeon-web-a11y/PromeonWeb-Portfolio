@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ノースリフォーム｜札幌市の内装リフォーム・内装修繕｜クロス・床の張り替え</title>
+<meta name="description" content="ノースリフォームは、札幌市・江別市・北広島市・石狩市など札幌近郊の内装リフォーム・内装修繕の個人店です。クロス・壁紙の張り替え、床・フローリングの施工、部分的な補修まで。相談から施工、施工後の清掃まで代表の北川が直接対応します。小さな工事もお気軽にご相談ください。">
+<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:title" content="ノースリフォーム｜札幌市の内装リフォーム・内装修繕">
+<meta property="og:description" content="札幌市を中心に、内装リフォーム・内装修繕を承っています。個人店ならではの柔軟な対応と、施工後の清掃まで丁寧に。小さな工事からお気軽にご相談ください。">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+
+<style>
+/* =====================================================================
+   ノースリフォーム — サンプルサイト
+   デザインは 同じフォルダの DESIGN.md（と CLAUDE.md）に準拠。
+   トークン・配色・余白・radius・shadow を勝手に追加しないこと。
+   ===================================================================== */
+
+:root {
+  /* Color (DESIGN.md §2) */
+  --color-primary: #2F6B4F;
+  --color-primary-hover: #255840;
+  --color-primary-active: #1F4A36;
+  --color-secondary: #5B9E7A;
+  --color-accent: #E8F0E9;
+  --color-bg: #FFFFFF;
+  --color-surface: #F7F9F7;
+  --color-text: #2B2E2B;
+  --color-text-sub: #6B726B;
+  --color-border: #E3E7E3;
+  --color-line-brand: #06C755;
+
+  /* Type (DESIGN.md §3) */
+  --font-ja: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "YuGothic", Meiryo, sans-serif;
+  --font-en: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --fs-h1: clamp(28px, 5.2vw, 44px);
+  --fs-h2: clamp(22px, 3.4vw, 30px);
+  --fs-h3: clamp(18px, 2vw, 20px);
+  --fs-h4: clamp(16px, 1.6vw, 17px);
+  --fs-body: clamp(15.5px, 1.4vw, 16px);
+  --fs-small: 14px;
+  --fs-caption: 12.5px;
+  --fs-label: 12.5px;
+  --lh-heading: 1.4;
+  --lh-body: 1.9;
+
+  /* Spacing (DESIGN.md §4 — 4/8/16/24/32/48/64/96/120 のみ) */
+  --space-4: 4px;  --space-8: 8px;  --space-16: 16px; --space-24: 24px;
+  --space-32: 32px; --space-48: 48px; --space-64: 64px; --space-96: 96px; --space-120: 120px;
+
+  /* Layout (DESIGN.md §4) */
+  --container-max: 1120px;
+  --container-narrow: 680px;
+  --container-wide: 1280px;
+  --pad-inline: 24px;
+  --section-y: 96px;
+  --section-y-lg: 120px;
+  --section-y-sm: 64px;
+  --gap-col: 56px;
+  --gap-card: 32px;
+  --gap-stack: 16px;
+  --gap-block: 32px;
+  --gap-cta: 40px;
+
+  /* Border / Radius / Shadow (DESIGN.md §8) */
+  --radius-none: 0;
+  --radius: 6px;
+  --radius-sm: 4px;
+  --border: 1px solid var(--color-border);
+  --border-strong: 1.5px solid var(--color-primary);
+  --shadow-card: 0 2px 8px rgba(20, 40, 25, 0.05);
+  --shadow-header: 0 1px 0 rgba(0, 0, 0, 0.06);
+
+  /* Motion (DESIGN.md §9) */
+  --dur-fast: 200ms;
+  --dur-base: 250ms;
+  --dur-enter: 500ms;
+  --ease-enter: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --header-h: 68px;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --pad-inline: 20px;
+    --section-y: 56px;
+    --section-y-lg: 64px;
+    --section-y-sm: 40px;
+    --gap-col: 32px;
+    --gap-card: 20px;
+    --header-h: 60px;
+  }
+}
+
+/* ---------- base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-ja);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  font-feature-settings: "palt" 1;
+  line-break: strict;
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2, h3, h4 { margin: 0; font-weight: 700; line-height: var(--lh-heading); }
+p { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+img { display: block; max-width: 100%; }
+a { color: var(--color-primary); text-decoration: none; }
+a:hover { color: var(--color-primary-hover); }
+:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+::selection { background: var(--color-accent); }
+[hidden] { display: none !important; }
+
+/* ---------- layout primitives ---------- */
+.container { max-width: var(--container-max); margin: 0 auto; padding-inline: var(--pad-inline); }
+.container.narrow { max-width: var(--container-narrow); }
+
+.section { padding-block: var(--section-y); }
+.section.bg-surface { background: var(--color-surface); }
+.section.bg-accent { background: var(--color-accent); }
+.section.band { padding-block: var(--section-y-sm); }
+
+:where(#about, #service, #strength, #clean, #works, #owner, #flow, #area, #faq, #contact) {
+  scroll-margin-top: calc(var(--header-h) + 8px);
+}
+
+.section-head { margin-bottom: var(--space-48); max-width: var(--container-narrow); }
+.eyebrow {
+  font-family: var(--font-en);
+  font-size: var(--fs-label);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: var(--space-16);
+}
+.section-head h2 { font-size: var(--fs-h2); letter-spacing: 0.04em; }
+.section-head .lead { margin-top: var(--space-24); color: var(--color-text); text-wrap: pretty; word-break: auto-phrase; }
+
+.stack > * + * { margin-top: var(--space-16); }
+.block > * + * { margin-top: var(--space-32); }
+.prose p { text-wrap: pretty; word-break: auto-phrase; }
+.prose p + p { margin-top: var(--space-16); }
+
+/* ---------- media (photo slots) ---------- */
+.media {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-surface);
+  border: var(--border);
+  border-radius: var(--radius);
+}
+.media.bare { border: 0; border-radius: var(--radius-none); }
+.media > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; }
+.media.r-16x9 { aspect-ratio: 16 / 9; }
+.media.r-3x2  { aspect-ratio: 3 / 2; }
+.media.r-4x3  { aspect-ratio: 4 / 3; }
+.media.r-3x4  { aspect-ratio: 3 / 4; }
+.media.r-21x9 { aspect-ratio: 21 / 9; }
+.media__ph {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-8);
+  text-align: center; padding: var(--space-16);
+  color: var(--color-text-sub);
+}
+.media__ph span { font-size: var(--fs-small); font-weight: 500; }
+.media__ph small { font-family: var(--font-en); font-size: 10px; letter-spacing: 0.16em; color: var(--color-secondary); }
+.media__ph svg { width: 26px; height: 26px; stroke: var(--color-secondary); }
+
+/* ---------- buttons (DESIGN.md §7) ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-8);
+  min-height: 52px; padding: 16px 28px;
+  border-radius: var(--radius); border: 0;
+  font-family: var(--font-ja); font-size: 16px; font-weight: 700; letter-spacing: 0.04em;
+  cursor: pointer; text-align: center;
+  transition: background var(--dur-fast) ease, color var(--dur-fast) ease;
+}
+.btn.primary { background: var(--color-primary); color: #fff; }
+.btn.primary:hover { background: var(--color-primary-hover); color: #fff; }
+.btn.primary:active { background: var(--color-primary-active); }
+.btn.secondary { background: var(--color-bg); color: var(--color-primary); border: var(--border-strong); }
+.btn.secondary:hover { background: var(--color-accent); color: var(--color-primary); }
+.btn.line { background: var(--color-line-brand); color: #fff; }
+.btn.line:hover { filter: brightness(0.94); color: #fff; }
+.btn.block { width: 100%; }
+.btn svg { width: 18px; height: 18px; }
+
+.cta-row { display: flex; flex-wrap: wrap; gap: var(--space-16); }
+.cta-row.tight { gap: var(--space-8) var(--space-16); }
+
+/* ---------- header ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 40;
+  background: var(--color-bg);
+  border-bottom: var(--border);
+}
+.site-header.scrolled { box-shadow: var(--shadow-header); }
+.site-header__inner {
+  max-width: var(--container-wide); margin: 0 auto; padding: 10px var(--pad-inline);
+  min-height: var(--header-h);
+  display: flex; align-items: center; justify-content: space-between; gap: var(--space-24);
+}
+.brand { display: flex; flex-direction: column; line-height: 1.25; }
+.brand b { font-size: 18px; font-weight: 700; letter-spacing: 0.02em; color: var(--color-text); }
+.brand span { font-size: 11px; color: var(--color-text-sub); letter-spacing: 0.06em; }
+.nav { display: flex; align-items: center; gap: var(--space-24); }
+.nav a { font-size: var(--fs-small); font-weight: 500; color: var(--color-text); letter-spacing: 0.02em; }
+.nav a:hover { color: var(--color-primary); }
+.header-cta { display: inline-flex; }
+.header-cta .btn { min-height: 42px; padding: 10px 18px; font-size: var(--fs-small); }
+.nav-toggle { display: none; }
+
+@media (max-width: 960px) {
+  .nav, .header-cta { display: none; }
+  .nav-toggle {
+    display: inline-flex; flex-direction: column; justify-content: center; gap: 5px;
+    width: 44px; height: 44px; margin-right: -8px;
+    background: transparent; border: 0; cursor: pointer;
+  }
+  .nav-toggle i { display: block; width: 24px; height: 2px; background: var(--color-text); transition: transform var(--dur-fast) ease, opacity var(--dur-fast) ease; }
+  .site-header.open .nav-toggle i:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .site-header.open .nav-toggle i:nth-child(2) { opacity: 0; }
+  .site-header.open .nav-toggle i:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .nav {
+    position: absolute; left: 0; right: 0; top: 100%;
+    flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--color-bg); border-bottom: var(--border);
+    padding: var(--space-8) var(--pad-inline) var(--space-24);
+    transform: translateY(-8px); opacity: 0; pointer-events: none;
+    transition: transform var(--dur-fast) ease, opacity var(--dur-fast) ease;
+  }
+  .site-header.open .nav { display: flex; transform: translateY(0); opacity: 1; pointer-events: auto; }
+  .nav a { padding: 14px 4px; font-size: 15px; border-top: var(--border); }
+  .nav a:first-child { border-top: 0; }
+  /* mobile CTA is covered by the fixed bottom bar + the "お問い合わせ" nav link,
+     so the header button stays hidden in the drawer. */
+}
+
+/* ---------- hero ---------- */
+.hero { position: relative; display: flex; align-items: flex-end; min-height: clamp(520px, 80vh, 760px); }
+.hero__media { position: absolute; inset: 0; }
+.hero__media .media { width: 100%; height: 100%; border: 0; border-radius: 0; background: var(--color-accent); }
+.hero__inner {
+  position: relative;
+  margin: 0 var(--pad-inline) clamp(24px, 6vw, 64px);
+  max-width: 620px;
+  background: var(--color-bg);
+  border: var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: clamp(24px, 4vw, 40px);
+}
+.hero__inner .eyebrow { margin-bottom: var(--space-16); }
+.hero h1 { font-size: var(--fs-h1); letter-spacing: 0.04em; text-wrap: balance; }
+.nw { white-space: nowrap; }
+.hero__sub { margin-top: var(--space-24); font-size: var(--fs-body); text-wrap: pretty; word-break: auto-phrase; }
+.hero .cta-row { margin-top: var(--space-32); }
+
+@media (min-width: 768px) {
+  .hero__inner { margin-left: max(var(--pad-inline), calc(50vw - var(--container-max) / 2)); }
+}
+@media (max-width: 767px) {
+  .hero { min-height: 76vh; }
+  .hero__inner { margin: 0 var(--pad-inline) 20px; max-width: none; width: calc(100% - var(--pad-inline) * 2); }
+  .hero .cta-row .btn { width: 100%; }
+  .hero .cta-row .btn.secondary { min-height: 46px; }
+}
+
+/* ---------- two-column alternating (DESIGN.md §5) ---------- */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap-col); align-items: center; }
+.two-col + .two-col { margin-top: var(--space-64); }
+.two-col .col-media .media { width: 100%; }
+@media (min-width: 768px) {
+  .two-col.reverse .col-media { order: 2; }
+}
+@media (max-width: 767px) {
+  .two-col { grid-template-columns: 1fr; gap: var(--space-24); }
+  .two-col .col-media { order: -1; } /* 写真 → テキスト */
+  .two-col + .two-col { margin-top: var(--space-48); }
+}
+
+.mini-num {
+  font-family: var(--font-en); font-size: var(--fs-label); font-weight: 700;
+  letter-spacing: 0.14em; color: var(--color-primary);
+}
+.two-col h3 { font-size: var(--fs-h3); margin-top: var(--space-8); }
+.two-col .col-text p { margin-top: var(--space-16); text-wrap: pretty; word-break: auto-phrase; }
+
+/* ---------- problems ---------- */
+.problem-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: var(--color-border); border: var(--border); border-radius: var(--radius); overflow: hidden; }
+.problem-list li { background: var(--color-bg); padding: var(--space-24); display: flex; gap: var(--space-16); align-items: flex-start; }
+.problem-list li svg { flex: none; width: 20px; height: 20px; stroke: var(--color-secondary); margin-top: 3px; }
+.problem-list li span { font-size: var(--fs-body); }
+.problems-close { margin-top: var(--space-32); display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-24); }
+.problems-close p { font-size: var(--fs-h4); font-weight: 700; }
+@media (max-width: 767px) {
+  .problem-list { grid-template-columns: 1fr; }
+  .problem-list li { padding: var(--space-16) var(--space-16); }
+}
+
+/* ---------- service cards (3-col — used ONCE) ---------- */
+.card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--gap-card); }
+.card { background: var(--color-bg); border: var(--border); border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; }
+.card .media { border: 0; border-radius: 0; border-bottom: var(--border); }
+.card__body { padding: var(--space-24); display: flex; flex-direction: column; gap: var(--space-8); flex: 1; }
+.card__no { font-family: var(--font-en); font-size: var(--fs-label); font-weight: 700; letter-spacing: 0.14em; color: var(--color-primary); }
+.card h3 { font-size: var(--fs-h3); }
+.card p { font-size: var(--fs-small); color: var(--color-text); text-wrap: pretty; word-break: auto-phrase; }
+.card .eg { margin-top: auto; padding-top: var(--space-16); border-top: var(--border); font-size: var(--fs-caption); color: var(--color-text-sub); letter-spacing: 0.02em; }
+
+/* ---------- clean work (signature) ---------- */
+.process { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap-card); }
+.process__step .media { margin-bottom: var(--space-16); }
+.process__step .phase { font-family: var(--font-en); font-size: var(--fs-label); font-weight: 700; letter-spacing: 0.12em; color: var(--color-primary); }
+.process__step h3 { font-size: var(--fs-h4); margin: var(--space-4) 0 var(--space-8); }
+.process__step p { font-size: var(--fs-small); text-wrap: pretty; word-break: auto-phrase; }
+.clean-close { margin-top: var(--space-48); padding-top: var(--space-32); border-top: var(--border-strong); font-size: var(--fs-h3); font-weight: 700; }
+@media (max-width: 767px) {
+  .process { grid-template-columns: 1fr; gap: var(--space-32); }
+}
+
+/* ---------- works (2-col — the only card grid besides Service; Clean Work's
+   3-up process sits between them so no two card grids touch) ---------- */
+.works-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: var(--gap-card); }
+@media (max-width: 460px) { .works-grid { grid-template-columns: 1fr; } }
+.work { border: var(--border); border-radius: var(--radius); overflow: hidden; background: var(--color-bg); }
+.work__ba { display: grid; grid-template-columns: 1fr 1fr; }
+.work__ba figure { position: relative; margin: 0; }
+.work__ba .media { border: 0; border-radius: 0; }
+.work__ba figure:first-child .media { border-right: var(--border); }
+.work__ba figcaption {
+  position: absolute; left: 0; top: 0;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.08em;
+  color: #fff; background: color-mix(in srgb, var(--color-text) 72%, transparent);
+  padding: 3px 8px;
+}
+.work__body { padding: var(--space-24); }
+.work__meta { display: flex; flex-wrap: wrap; gap: var(--space-8) var(--space-16); font-size: var(--fs-caption); color: var(--color-text-sub); letter-spacing: 0.04em; }
+.work__body h3 { font-size: var(--fs-h4); margin: var(--space-8) 0; }
+.work__body p { font-size: var(--fs-small); text-wrap: pretty; word-break: auto-phrase; }
+.works-note { margin-top: var(--space-24); font-size: var(--fs-caption); color: var(--color-text-sub); }
+@media (max-width: 400px) {
+  .work__ba { grid-template-columns: 1fr; }
+  .work__ba figure:first-child .media { border-right: 0; border-bottom: var(--border); }
+}
+
+/* ---------- flow ---------- */
+.flow { border-top: var(--border); }
+.flow__item { display: grid; grid-template-columns: 96px 1fr; gap: var(--space-24); padding: var(--space-24) 0; border-bottom: var(--border); }
+.flow__num { font-family: var(--font-en); font-size: 13px; font-weight: 700; letter-spacing: 0.12em; color: var(--color-primary); }
+.flow__item h3 { font-size: var(--fs-h4); }
+.flow__item p { margin-top: var(--space-8); font-size: var(--fs-small); text-wrap: pretty; word-break: auto-phrase; }
+.flow__badge { display: inline-block; margin-top: var(--space-8); padding: 4px 10px; border-radius: var(--radius-sm); background: var(--color-accent); color: var(--color-primary); font-size: var(--fs-caption); font-weight: 700; letter-spacing: 0.04em; }
+@media (max-width: 767px) {
+  .flow__item { grid-template-columns: 1fr; gap: var(--space-8); }
+}
+
+/* ---------- area ---------- */
+.area-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap-col); align-items: start; }
+.area-list { display: flex; flex-wrap: wrap; gap: var(--space-8); }
+.area-list li { padding: 6px 12px; border: var(--border); border-radius: var(--radius-sm); font-size: var(--fs-small); background: var(--color-bg); }
+.area-list li.city { border-color: var(--color-secondary); color: var(--color-primary); font-weight: 500; }
+@media (max-width: 767px) { .area-wrap { grid-template-columns: 1fr; gap: var(--space-24); } }
+
+/* ---------- CTA band ---------- */
+.cta-band { text-align: left; }
+.cta-band h2 { font-size: var(--fs-h2); letter-spacing: 0.02em; text-wrap: balance; }
+.cta-band p { margin-top: var(--space-16); max-width: 40em; text-wrap: pretty; word-break: auto-phrase; }
+.cta-band .cta-row { margin-top: var(--gap-cta); }
+.cta-band .fine { margin-top: var(--space-16); font-size: var(--fs-caption); color: var(--color-text-sub); }
+
+/* ---------- FAQ ---------- */
+.faq { border-top: var(--border); }
+.faq details { border-bottom: var(--border); }
+.faq summary {
+  list-style: none; cursor: pointer;
+  display: flex; gap: var(--space-16); align-items: flex-start;
+  padding: var(--space-24) 0;
+  font-size: var(--fs-h4); font-weight: 700;
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::before { content: "Q"; font-family: var(--font-en); color: var(--color-primary); flex: none; }
+.faq summary::after {
+  content: ""; flex: none; margin-left: auto; width: 12px; height: 12px; margin-top: 6px;
+  border-right: 2px solid var(--color-text-sub); border-bottom: 2px solid var(--color-text-sub);
+  transform: rotate(45deg); transition: transform var(--dur-base) ease;
+}
+.faq details[open] summary::after { transform: rotate(225deg); }
+.faq .faq__a { padding: 0 0 var(--space-24) 30px; font-size: var(--fs-small); text-wrap: pretty; word-break: auto-phrase; }
+
+/* ---------- contact ---------- */
+.contact-routes { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap-card); margin-bottom: var(--space-48); }
+.route { border: var(--border); border-radius: var(--radius); padding: var(--space-24); display: flex; flex-direction: column; gap: var(--space-8); }
+.route h3 { font-size: var(--fs-h4); display: flex; align-items: center; gap: var(--space-8); }
+.route h3 svg { width: 20px; height: 20px; stroke: var(--color-secondary); }
+.route p { font-size: var(--fs-caption); color: var(--color-text-sub); }
+.route .btn { margin-top: var(--space-8); min-height: 46px; padding: 12px 18px; font-size: var(--fs-small); }
+.route .tel { font-family: var(--font-en); font-size: 22px; font-weight: 700; letter-spacing: 0.02em; color: var(--color-text); }
+@media (max-width: 767px) { .contact-routes { grid-template-columns: 1fr; gap: var(--space-16); } }
+
+.form { display: grid; gap: var(--space-24); max-width: var(--container-narrow); }
+.field { display: flex; flex-direction: column; gap: var(--space-8); }
+.field label { font-size: var(--fs-small); font-weight: 500; }
+.field .req { color: var(--color-primary); font-size: var(--fs-caption); margin-left: var(--space-4); }
+.field input, .field select, .field textarea {
+  font-family: inherit; font-size: 16px; color: var(--color-text);
+  background: var(--color-surface);
+  border: var(--border); border-radius: var(--radius);
+  padding: 12px 14px;
+}
+.field textarea { min-height: 130px; resize: vertical; }
+.field input:focus-visible, .field select:focus-visible, .field textarea:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 0; border-color: var(--color-primary); }
+.form-note { font-size: var(--fs-caption); color: var(--color-text-sub); }
+.form-done { border: var(--border-strong); border-radius: var(--radius); padding: var(--space-32); background: var(--color-accent); }
+.form-done h3 { font-size: var(--fs-h3); }
+.form-done p { margin-top: var(--space-16); font-size: var(--fs-small); }
+
+/* ---------- footer ---------- */
+.site-footer { background: var(--color-surface); border-top: var(--border); padding-block: var(--space-64) var(--space-32); }
+.footer-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-32); }
+.footer-brand b { font-size: 17px; }
+.footer-brand p { font-size: var(--fs-caption); color: var(--color-text-sub); margin-top: var(--space-8); }
+.footer-nav { display: flex; flex-wrap: wrap; gap: var(--space-16) var(--space-24); }
+.footer-nav a { font-size: var(--fs-small); color: var(--color-text); }
+.footer-nav a:hover { color: var(--color-primary); }
+.footer-bottom { margin-top: var(--space-48); padding-top: var(--space-24); border-top: var(--border); display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-16); }
+.footer-bottom small, .footer-bottom p { font-size: var(--fs-caption); color: var(--color-text-sub); font-family: var(--font-en); letter-spacing: 0.04em; }
+.footer-portfolio { font-size: var(--fs-caption); }
+
+/* ---------- mobile fixed CTA bar ---------- */
+.cta-bar { display: none; }
+@media (max-width: 767px) {
+  .cta-bar {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+    background: var(--color-bg); border-top: var(--border);
+  }
+  .cta-bar a {
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+    padding: 8px 4px; min-height: 58px;
+    font-size: 11px; font-weight: 700; color: var(--color-text); letter-spacing: 0.04em;
+  }
+  .cta-bar a + a { border-left: var(--border); }
+  .cta-bar a svg { width: 18px; height: 18px; stroke: var(--color-primary); }
+  .cta-bar a.is-line svg { stroke: var(--color-line-brand); }
+  body { padding-bottom: 58px; }
+}
+
+/* ---------- scroll-in animation (DESIGN.md §9) ---------- */
+[data-animate] { opacity: 0; transform: translateY(16px); transition: opacity var(--dur-enter) var(--ease-enter), transform var(--dur-enter) var(--ease-enter); }
+[data-animate].is-visible { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  [data-animate] { opacity: 1; transform: none; transition: none; }
+  * { animation: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- =====================================================================
+     HEADER
+     ================================================================== -->
+<header class="site-header" id="top">
+  <div class="site-header__inner">
+    <a href="#top" class="brand" aria-label="ノースリフォーム トップへ">
+      <b>ノースリフォーム</b>
+      <span>札幌市の内装リフォーム・内装修繕</span>
+    </a>
+
+    <nav class="nav" id="nav" aria-label="サイト内ナビゲーション">
+      <a href="#about">ノースリフォームについて</a>
+      <a href="#service">サービス</a>
+      <a href="#strength">強み</a>
+      <a href="#works">施工事例</a>
+      <a href="#owner">代表者紹介</a>
+      <a href="#flow">ご依頼の流れ</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">お問い合わせ</a>
+    </nav>
+
+    <div class="header-cta">
+      <a class="btn primary" href="#contact">無料相談する</a>
+    </div>
+
+    <button type="button" class="nav-toggle" aria-label="メニューを開く" aria-expanded="false" aria-controls="nav">
+      <i></i><i></i><i></i>
+    </button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===================================================================
+       01. FIRST VIEW
+       =============================================================== -->
+  <section class="hero" aria-label="ノースリフォーム">
+    <div class="hero__media">
+      <!-- PHOTO[hero]: 代表が養生 or 清掃している作業中の1枚。16:9（SP用に4:5を<picture>で出し分け）。完成写真にしない。 -->
+      <!-- <picture>
+             <source media="(max-width: 767px)" srcset="images/hero-sp.jpg">
+             <img src="images/hero.jpg" alt="代表が室内を養生し、清掃しながら内装リフォームを進めている様子" width="2000" height="1125">
+           </picture> -->
+      <div class="media r-16x9 bare">
+        <span class="media__ph">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6"><path d="M3 9l9-6 9 6v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 21v-8h6v8"/></svg>
+          <span>代表が施工・清掃している様子</span>
+          <small>PHOTO 16:9 / SP 4:5</small>
+        </span>
+      </div>
+    </div>
+
+    <div class="hero__inner" data-animate>
+      <p class="eyebrow">Sapporo / Interior Reform</p>
+      <h1><span class="nw">住まいも、仕事も、</span><br><span class="nw">きれいに。</span></h1>
+      <p class="hero__sub">
+        札幌市を中心に、内装リフォーム・内装修繕を承っています。<br>
+        個人店ならではの柔軟な対応と、施工後の清掃まで丁寧に。<br>
+        小さな工事から、お気軽にご相談ください。
+      </p>
+      <div class="cta-row">
+        <a class="btn primary" href="#contact">無料相談する</a>
+        <a class="btn line" href="#contact" aria-label="LINEで相談する">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.5 1.5 4.7 3.8 6.2-.2.7-.8 2.6-.9 3-.1.5.2.5.4.4.2-.1 2.9-1.9 4-2.7.9.1 1.8.2 2.7.2 5.5 0 10-3.6 10-8S17.5 3 12 3z"/></svg>
+          LINEで相談する
+        </a>
+        <a class="btn secondary" href="#works">施工事例を見る</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       02. ABOUT
+       =============================================================== -->
+  <section class="section" id="about" aria-labelledby="about-h">
+    <div class="container">
+      <div class="two-col">
+        <div class="col-text" data-animate>
+          <p class="eyebrow">About</p>
+          <h2 id="about-h">工事だけではなく、その前後まで丁寧に。</h2>
+          <div class="prose" style="margin-top: var(--space-24)">
+            <p>ノースリフォームは、札幌市と近郊で、住宅と店舗の内装リフォーム・修繕を行っている個人店です。お問い合わせから現地確認、お見積もり、施工、そして施工後の清掃まで、代表の北川がひとりで担当します。</p>
+            <p>得意にしているのは、壁紙や床の張り替え、内装の補修といった、暮らしに身近な工事です。「一面だけ」「傷んだところだけ」という小さなご相談も歓迎しています。</p>
+            <p>工事の仕上がりだけでなく、作業中の整理整頓と、終わったあとの清掃まで含めて“ひとつの仕事”と考えています。</p>
+          </div>
+        </div>
+        <div class="col-media" data-animate>
+          <!-- PHOTO[about]: 種類ごとに整頓された道具箱、または養生済みの床での作業風景。3:2 -->
+          <div class="media r-3x2">
+            <span class="media__ph"><span>整理された道具・作業風景</span><small>PHOTO 3:2</small></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       03. PROBLEMS
+       =============================================================== -->
+  <section class="section bg-surface" aria-labelledby="problems-h">
+    <div class="container">
+      <div class="section-head" data-animate>
+        <p class="eyebrow">Problems</p>
+        <h2 id="problems-h">こんなお悩みありませんか？</h2>
+      </div>
+
+      <ul class="problem-list" data-animate>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><span>壁紙が汚れてきた・黒ずみが気になる</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><span>クロスがめくれてきた・浮いてきた</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><span>床が傷んできた、へこみ・きしみがある</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><span>部屋の一部分だけ、印象を変えたい</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><span>中古で買った家を、きれいにしたい</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><span>小さな工事でも頼めるのか分からない</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><span>どこに相談すればいいのか分からない</span></li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><span>知らない業者を家に入れるのが少し不安</span></li>
+      </ul>
+
+      <div class="problems-close" data-animate>
+        <p>小さな内装工事から、お気軽にご相談ください。</p>
+        <a class="btn secondary" href="#contact">相談してみる</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       04. SERVICE  (3カラムカード — サイト内で1回のみ)
+       =============================================================== -->
+  <section class="section" id="service" aria-labelledby="service-h">
+    <div class="container">
+      <div class="section-head" data-animate>
+        <p class="eyebrow">Service</p>
+        <h2 id="service-h">こんな工事に対応しています</h2>
+        <p class="lead">専門的な名前で選ばなくて大丈夫です。「壁紙を変えたい」「床が傷んでいる」といったご相談から、必要な工事をご案内します。</p>
+      </div>
+
+      <div class="card-grid" data-animate>
+        <article class="card">
+          <div class="media r-3x2"><span class="media__ph"><span>クロス施工中</span><small>PHOTO 3:2</small></span></div>
+          <div class="card__body">
+            <p class="card__no">01</p>
+            <h3>クロス・壁紙</h3>
+            <p>部屋全体の張り替えから、一面だけのアクセントクロスまで。めくれ・浮きの補修にも対応します。</p>
+            <p class="eg">例：リビング全面／トイレ・洗面の壁／子ども部屋のアクセントクロス</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="media r-3x2"><span class="media__ph"><span>床材の施工中</span><small>PHOTO 3:2</small></span></div>
+          <div class="card__body">
+            <p class="card__no">02</p>
+            <h3>床・フローリング</h3>
+            <p>クッションフロアやフローリングの張り替え、傷んだ部分の交換。床鳴りやへこみの補修も行います。</p>
+            <p class="eg">例：洋室のフローリング／キッチン・洗面のクッションフロア／部分的な床の補修</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="media r-3x2"><span class="media__ph"><span>パテ・内装の補修</span><small>PHOTO 3:2</small></span></div>
+          <div class="card__body">
+            <p class="card__no">03</p>
+            <h3>内装補修</h3>
+            <p>小さな傷・へこみ・剥がれの部分補修。「張り替えるほどではないけれど気になる」という箇所もご相談ください。</p>
+            <p class="eg">例：壁の穴・ひび／建具のがたつき／巾木・見切りの交換</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="media r-3x2"><span class="media__ph"><span>洗面まわりの内装</span><small>PHOTO 3:2</small></span></div>
+          <div class="card__body">
+            <p class="card__no">04</p>
+            <h3>水回り周辺の内装工事</h3>
+            <p>キッチン・洗面・トイレまわりの、壁と床の内装工事。設備そのものの交換に合わせた内装にも対応します。</p>
+            <p class="eg">例：洗面室の床と壁／トイレのクロスと床／キッチンパネル周辺</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="media r-3x2"><span class="media__ph"><span>空室のクロス張り替え</span><small>PHOTO 3:2</small></span></div>
+          <div class="card__body">
+            <p class="card__no">05</p>
+            <h3>原状回復</h3>
+            <p>賃貸物件の退去時のクロス・床の張り替えとクリーニング。オーナー様の空室対策のご相談も承ります。</p>
+            <p class="eg">例：ワンルームの原状回復／アパート一室の内装リセット</p>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="media r-3x2"><span class="media__ph"><span>一室まるごとの施工</span><small>PHOTO 3:2</small></span></div>
+          <div class="card__body">
+            <p class="card__no">06</p>
+            <h3>部分リフォーム</h3>
+            <p>「この部屋だけ」「この面だけ」の小規模リフォーム。大がかりな工事をせずに、部屋の印象を整えます。</p>
+            <p class="eg">例：和室の表層を洋室風に／一室まるごとの模様替え</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       05. STRENGTH  (2カラム左右交互 — 3カラム反復を断つ背骨)
+       =============================================================== -->
+  <section class="section bg-surface" id="strength" aria-labelledby="strength-h">
+    <div class="container">
+      <div class="section-head" data-animate>
+        <p class="eyebrow">Strength</p>
+        <h2 id="strength-h">安心してお任せいただくために</h2>
+      </div>
+
+      <div class="two-col" data-animate>
+        <div class="col-media">
+          <div class="media r-3x2"><span class="media__ph"><span>養生・作業中の整理整頓</span><small>PHOTO 3:2</small></span></div>
+        </div>
+        <div class="col-text">
+          <p class="mini-num">01</p>
+          <h3>清掃まで丁寧に</h3>
+          <p>施工前の養生から、作業中の整理整頓、そして施工後の清掃まで。ゴミや施工材を残さず、できるだけ施工前より気持ちよく感じていただける状態でお引き渡しします。ノースリフォームが、いちばん大切にしていることです。</p>
+        </div>
+      </div>
+
+      <div class="two-col reverse" data-animate>
+        <div class="col-media">
+          <div class="media r-3x2"><span class="media__ph"><span>現地確認をする代表</span><small>PHOTO 3:2</small></span></div>
+        </div>
+        <div class="col-text">
+          <p class="mini-num">02</p>
+          <h3>代表が直接対応</h3>
+          <p>お問い合わせ・現地確認・お見積もり・施工・確認まで、すべて代表の北川が担当します。担当者が途中で変わらないので、「営業に伝えたことが職人に届いていない」ということが起こりません。</p>
+        </div>
+      </div>
+
+      <div class="two-col" data-animate>
+        <div class="col-media">
+          <div class="media r-3x2"><span class="media__ph"><span>打ち合わせの様子</span><small>PHOTO 3:2</small></span></div>
+        </div>
+        <div class="col-text">
+          <p class="mini-num">03</p>
+          <h3>個人店だから柔軟</h3>
+          <p>小規模な修繕、一部分だけの施工、日程や予算のご相談にも、できる範囲で柔軟に対応します。「こんなことでも頼めますか？」というところから、どうぞお聞かせください。</p>
+        </div>
+      </div>
+
+      <div class="two-col reverse" data-animate>
+        <div class="col-media">
+          <div class="media r-3x2"><span class="media__ph"><span>一面だけのクロス張り替え</span><small>PHOTO 3:2</small></span></div>
+        </div>
+        <div class="col-text">
+          <p class="mini-num">04</p>
+          <h3>小さな工事も歓迎</h3>
+          <p>クロス一面だけ、床の一部分だけ、小さな補修だけ。大きな工事でなくても遠慮はいりません。むしろ、そうした工事こそ個人店の得意なところです。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       06. CLEAN WORK  (独自セクション・最大の差別化)
+       =============================================================== -->
+  <section class="section bg-accent" id="clean" aria-labelledby="clean-h">
+    <div class="container">
+      <div class="section-head" data-animate>
+        <p class="eyebrow">Clean Work</p>
+        <h2 id="clean-h">清掃までが、私たちの仕事です。</h2>
+        <p class="lead">リフォーム工事は、お客様が普段生活している場所に入って行う仕事です。だからノースリフォームでは、仕上がりと同じくらい「工事のあいだ」と「工事のあと」を大切にしています。</p>
+      </div>
+
+      <div class="process" data-animate>
+        <div class="process__step">
+          <!-- PHOTO[clean-1]: 床・家具・通路を養生している様子。4:3 -->
+          <div class="media r-4x3"><span class="media__ph"><span>養生している様子</span><small>PHOTO 4:3</small></span></div>
+          <p class="phase">施工前</p>
+          <h3>養生する</h3>
+          <p>家具や床、荷物の通り道をしっかり養生してから作業に入ります。ホコリや傷から、生活空間を守ります。</p>
+        </div>
+        <div class="process__step">
+          <!-- PHOTO[clean-2]: その日の作業終わりの、片づけられた現場。4:3 -->
+          <div class="media r-4x3"><span class="media__ph"><span>整理された施工現場</span><small>PHOTO 4:3</small></span></div>
+          <p class="phase">施工中</p>
+          <h3>散らかさない</h3>
+          <p>工具や材料を出しっぱなしにせず、その日の作業が終わるたびに片づけます。現場をきれいに保ちながら進めます。</p>
+        </div>
+        <div class="process__step">
+          <!-- PHOTO[clean-3]: 施工後の清掃・粉じん除去・施工材のまとめ。4:3 -->
+          <div class="media r-4x3"><span class="media__ph"><span>施工後の清掃</span><small>PHOTO 4:3</small></span></div>
+          <p class="phase">施工後</p>
+          <h3>清掃する</h3>
+          <p>施工で出たゴミや粉じんを清掃し、施工材を残しません。仕上がりを一緒に確認して、お引き渡しします。</p>
+        </div>
+      </div>
+
+      <p class="clean-close" data-animate>「きれいにする工事」だからこそ、現場もきれいに。</p>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       07. WORKS  (2–3カラム — サイト内で2回目の複数カラム。Serviceとは
+                   Strength＋Clean Work を挟んでいる)
+       =============================================================== -->
+  <section class="section" id="works" aria-labelledby="works-h">
+    <div class="container">
+      <div class="section-head" data-animate>
+        <p class="eyebrow">Works</p>
+        <h2 id="works-h">施工事例</h2>
+        <p class="lead">実際の施工を想定した事例です。地域・建物の種別・施工内容と、施工前後の様子を掲載しています。</p>
+      </div>
+
+      <div class="works-grid" data-animate>
+        <!-- 事例を追加する場合は、この <article class="work"> ブロックを複製してください。 -->
+        <article class="work">
+          <div class="work__ba">
+            <figure><figcaption>施工前</figcaption><div class="media r-4x3"><span class="media__ph"><span>リビングのクロス（前）</span><small>4:3</small></span></div></figure>
+            <figure><figcaption>施工後</figcaption><div class="media r-4x3"><span class="media__ph"><span>リビングのクロス（後）</span><small>4:3</small></span></div></figure>
+          </div>
+          <div class="work__body">
+            <p class="work__meta"><span>札幌市</span><span>戸建住宅</span></p>
+            <h3>リビングのクロス張り替え</h3>
+            <p>築年数の経過で汚れと日焼けが目立っていたリビングのクロスを、明るいホワイト系で全面張り替え。部屋全体が広く、明るく感じられる仕上がりになりました。</p>
+          </div>
+        </article>
+
+        <article class="work">
+          <div class="work__ba">
+            <figure><figcaption>施工前</figcaption><div class="media r-4x3"><span class="media__ph"><span>洋室の床（前）</span><small>4:3</small></span></div></figure>
+            <figure><figcaption>施工後</figcaption><div class="media r-4x3"><span class="media__ph"><span>洋室の床（後）</span><small>4:3</small></span></div></figure>
+          </div>
+          <div class="work__body">
+            <p class="work__meta"><span>札幌市</span><span>マンション</span></p>
+            <h3>クッションフロアの張り替え</h3>
+            <p>傷みとへこみが目立っていた洋室の床材を交換。家具を動かしながら1日で施工し、完了後には清掃まで実施しました。</p>
+          </div>
+        </article>
+
+        <article class="work">
+          <div class="work__ba">
+            <figure><figcaption>施工前</figcaption><div class="media r-4x3"><span class="media__ph"><span>子ども部屋（前）</span><small>4:3</small></span></div></figure>
+            <figure><figcaption>施工後</figcaption><div class="media r-4x3"><span class="media__ph"><span>子ども部屋（後）</span><small>4:3</small></span></div></figure>
+          </div>
+          <div class="work__body">
+            <p class="work__meta"><span>江別市</span><span>戸建住宅</span></p>
+            <h3>子ども部屋のクロス張り替え</h3>
+            <p>一面だけアクセントクロスを使った部分施工。全面リフォームをせずに、部屋の印象だけを変えました。</p>
+          </div>
+        </article>
+      </div>
+
+      <p class="works-note" data-animate>※ 掲載写真はイメージです。実際の施工写真に差し替えて掲載します。</p>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       08. OWNER
+       =============================================================== -->
+  <section class="section bg-surface" id="owner" aria-labelledby="owner-h">
+    <div class="container">
+      <div class="two-col">
+        <div class="col-media" data-animate>
+          <!-- PHOTO[owner]: 代表 北川直人。作業着・現場での自然な姿。3:4（縦）。堅い経営者写真にしない。 -->
+          <div class="media r-3x4"><span class="media__ph"><span>代表 北川 直人／作業中</span><small>PHOTO 3:4</small></span></div>
+        </div>
+        <div class="col-text" data-animate>
+          <p class="eyebrow">Owner</p>
+          <h2 id="owner-h">代表者紹介</h2>
+          <p style="margin-top: var(--space-16); font-weight: 700;">北川 直人（きたがわ なおと）／ノースリフォーム 代表</p>
+          <div class="prose" style="margin-top: var(--space-24)">
+            <p>内装の仕事を続けてきて感じるのは、リフォームは「知らない人を家に上げる」不安とセットだ、ということです。だからこそ、誰が来て、どんなふうに作業するのかが分かることを大事にしています。</p>
+            <p>清掃や整理整頓にこだわるのは、特別なことをしているつもりはなく、「自分の家に入るならこうしてほしい」と思うことを、そのままやっているだけです。</p>
+            <p>小さな工事だからと、お断りすることはしません。「一面だけ」「ここだけ」というご相談こそ、個人店の得意なところだと思っています。</p>
+            <p>ご相談から施工、最後の確認まで、私が伺います。まずは気軽に声をかけてください。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       09. FLOW
+       =============================================================== -->
+  <section class="section" id="flow" aria-labelledby="flow-h">
+    <div class="container narrow">
+      <div class="section-head" data-animate>
+        <p class="eyebrow">Flow</p>
+        <h2 id="flow-h">ご相談から施工まで</h2>
+      </div>
+
+      <ol class="flow" data-animate>
+        <li class="flow__item">
+          <span class="flow__num">STEP 01</span>
+          <div><h3>お問い合わせ</h3><p>LINE・お問い合わせフォーム・お電話から。「まだ工事するか決めていない」という段階でも大丈夫です。</p></div>
+        </li>
+        <li class="flow__item">
+          <span class="flow__num">STEP 02</span>
+          <div><h3>内容確認</h3><p>施工したい場所や、今の状態をお聞きします。写真を送っていただけると、より具体的にお伝えできます。</p></div>
+        </li>
+        <li class="flow__item">
+          <span class="flow__num">STEP 03</span>
+          <div><h3>現地確認</h3><p>実際に施工箇所を見て、方法・ご希望・予算を一緒に相談します。</p></div>
+        </li>
+        <li class="flow__item">
+          <span class="flow__num">STEP 04</span>
+          <div><h3>お見積もり</h3><p>施工内容にもとづいてお見積もりをご提示します。内容にご納得いただいてから、正式なご依頼です。無理におすすめすることはありません。</p></div>
+        </li>
+        <li class="flow__item">
+          <span class="flow__num">STEP 05</span>
+          <div><h3>施工</h3><p>周囲を養生し、できるだけ生活への影響を抑えながら作業します。</p></div>
+        </li>
+        <li class="flow__item">
+          <span class="flow__num">STEP 06</span>
+          <div><h3>清掃・確認</h3><p>施工後に清掃を行い、仕上がりを一緒に確認します。気持ちよく生活に戻っていただける状態でお引き渡しします。</p><span class="flow__badge">ノースリフォームが大切にしている工程です</span></div>
+        </li>
+        <li class="flow__item">
+          <span class="flow__num">STEP 07</span>
+          <div><h3>完了</h3><p>問題がなければ施工完了です。あとから気になる点があれば、お気軽にご連絡ください。</p></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       10. AREA
+       =============================================================== -->
+  <section class="section bg-surface" id="area" aria-labelledby="area-h">
+    <div class="container">
+      <div class="area-wrap">
+        <div class="col-text" data-animate>
+          <p class="eyebrow">Area</p>
+          <h2 id="area-h">札幌市を中心に対応しています</h2>
+          <div class="prose" style="margin-top: var(--space-24)">
+            <p>札幌市の全域と、隣接する市を中心に対応しています。エリア外でも、内容によってはお受けできる場合がありますので、一度ご相談ください。</p>
+          </div>
+        </div>
+        <div data-animate>
+          <ul class="area-list">
+            <li class="city">札幌市</li>
+            <li class="city">江別市</li>
+            <li class="city">北広島市</li>
+            <li class="city">石狩市</li>
+            <li>その他 札幌近郊</li>
+          </ul>
+          <ul class="area-list" style="margin-top: var(--space-16)">
+            <li>中央区</li><li>北区</li><li>東区</li><li>白石区</li><li>豊平区</li>
+            <li>南区</li><li>西区</li><li>厚別区</li><li>手稲区</li><li>清田区</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       11. CTA BAND
+       =============================================================== -->
+  <section class="section band bg-accent" aria-labelledby="cta-h">
+    <div class="container cta-band" data-animate>
+      <p class="eyebrow">Contact</p>
+      <h2 id="cta-h">まだ工事するか決まっていなくても大丈夫です。</h2>
+      <p>「こんなこと頼めるかな？」という段階から、お気軽にご相談ください。費用の目安だけでも構いません。</p>
+      <div class="cta-row">
+        <a class="btn line" href="#contact">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3C6.5 3 2 6.6 2 11c0 2.5 1.5 4.7 3.8 6.2-.2.7-.8 2.6-.9 3-.1.5.2.5.4.4.2-.1 2.9-1.9 4-2.7.9.1 1.8.2 2.7.2 5.5 0 10-3.6 10-8S17.5 3 12 3z"/></svg>
+          LINEで相談する
+        </a>
+        <a class="btn primary" href="#contact">無料相談する</a>
+        <a class="btn secondary" href="tel:00000000000">電話する</a>
+      </div>
+      <p class="fine">LINEなら、施工したい場所の写真を送っていただけるとスムーズです。</p>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       12. FAQ
+       =============================================================== -->
+  <section class="section" id="faq" aria-labelledby="faq-h">
+    <div class="container narrow">
+      <div class="section-head" data-animate>
+        <p class="eyebrow">FAQ</p>
+        <h2 id="faq-h">よくある質問</h2>
+      </div>
+
+      <div class="faq" data-animate>
+        <details>
+          <summary>小さな工事でもお願いできますか？</summary>
+          <div class="faq__a">はい。クロス一面の張り替えや、床の一部分の補修など、小規模な工事でもできる限り対応しています。まずはお気軽にご相談ください。</div>
+        </details>
+        <details>
+          <summary>見積もりだけでも大丈夫ですか？</summary>
+          <div class="faq__a">はい。施工内容や今の状態を確認したうえで、お見積もりをご案内します。無理に契約をおすすめすることはありません。</div>
+        </details>
+        <details>
+          <summary>施工後の清掃もしてもらえますか？</summary>
+          <div class="faq__a">はい。施工後の清掃まで含めて、ひとつの仕事と考えています。できるだけ気持ちよく生活に戻っていただける状態でお引き渡しします。</div>
+        </details>
+        <details>
+          <summary>日程について相談できますか？</summary>
+          <div class="faq__a">はい。個人で対応しているため予約状況にもよりますが、できる範囲で柔軟に調整します。</div>
+        </details>
+        <details>
+          <summary>まだ工事するか迷っている段階でも相談できますか？</summary>
+          <div class="faq__a">もちろんです。「こういう工事はできますか？」「費用感だけ知りたい」という段階でも構いません。</div>
+        </details>
+        <details>
+          <summary>対応エリア外でも相談できますか？</summary>
+          <div class="faq__a">内容によってはお受けできる場合があります。まずは場所と施工内容をお知らせください。</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================
+       13. CONTACT
+       =============================================================== -->
+  <section class="section bg-surface" id="contact" aria-labelledby="contact-h">
+    <div class="container">
+      <div class="section-head" data-animate>
+        <p class="eyebrow">Contact</p>
+        <h2 id="contact-h">お問い合わせ</h2>
+        <p class="lead">LINE・お問い合わせフォーム・お電話からご相談いただけます。施工したい場所の写真を送りたい場合は、LINEが便利です。</p>
+      </div>
+
+      <div class="contact-routes" data-animate>
+        <div class="route">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M4 4h16v13H7l-3 3z"/></svg>LINE</h3>
+          <p>友だち追加してメッセージを送るだけ。写真も送れます。</p>
+          <a class="btn line block" href="#" aria-label="LINEで相談する">LINEで相談する</a>
+        </div>
+        <div class="route">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M6 3l3 5-2 2a12 12 0 0 0 5 5l2-2 5 3v3a2 2 0 0 1-2 2A17 17 0 0 1 4 5a2 2 0 0 1 2-2z"/></svg>電話</h3>
+          <p class="tel">000-0000-0000</p>
+          <p>受付時間：平日・土 9:00〜18:00</p>
+          <a class="btn secondary block" href="tel:00000000000">電話をかける</a>
+        </div>
+        <div class="route">
+          <h3><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M4 5h16v14H4z"/><path d="M4 7l8 6 8-6"/></svg>フォーム</h3>
+          <p>下のフォームから送信してください。2営業日以内にご返信します。</p>
+          <a class="btn secondary block" href="#contact-form">フォームへ</a>
+        </div>
+      </div>
+
+      <!-- 本番では action を フォーム送信先（例：Formspree 等）に接続してください。 -->
+      <form class="form" id="contact-form" action="#" method="post" data-animate>
+        <div class="field">
+          <label for="f-name">お名前<span class="req">必須</span></label>
+          <input id="f-name" name="name" type="text" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="f-contact">電話番号またはメールアドレス<span class="req">必須</span></label>
+          <input id="f-contact" name="contact" type="text" required autocomplete="tel" placeholder="ご連絡のつく電話番号かメールアドレス">
+        </div>
+        <div class="field">
+          <label for="f-place">施工場所</label>
+          <input id="f-place" name="place" type="text" placeholder="例：札幌市◯◯区／戸建・マンション など">
+        </div>
+        <div class="field">
+          <label for="f-message">ご相談内容</label>
+          <textarea id="f-message" name="message" placeholder="施工したい場所、今の状態、ご希望など。決まっていない点はそのままで構いません。"></textarea>
+        </div>
+        <div class="field">
+          <label for="f-method">希望する連絡方法</label>
+          <select id="f-method" name="method">
+            <option>どれでも</option>
+            <option>LINE</option>
+            <option>電話</option>
+            <option>メール</option>
+          </select>
+        </div>
+        <p class="form-note">いただいた内容を確認し、2営業日以内にご返信します。写真を送りたい場合は、送信後にLINEもあわせてご利用ください。</p>
+        <div><button type="submit" class="btn primary">送信する</button></div>
+      </form>
+
+      <div class="form-done" id="contact-done" hidden data-animate>
+        <h3>送信いただき、ありがとうございます。</h3>
+        <p>内容を確認のうえ、2営業日以内にご返信いたします。お急ぎの場合は、LINEまたはお電話でもご相談いただけます。</p>
+        <button type="button" class="btn secondary" id="contact-reset" style="margin-top: var(--space-24)">別の内容で送る</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- =====================================================================
+     FOOTER
+     ================================================================== -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <b>ノースリフォーム</b>
+        <p>住宅・店舗 内装リフォーム／内装修繕<br>札幌市・江別市・北広島市・石狩市ほか札幌近郊対応</p>
+      </div>
+      <nav class="footer-nav" aria-label="フッターナビゲーション">
+        <a href="#service">サービス</a>
+        <a href="#works">施工事例</a>
+        <a href="#owner">代表者紹介</a>
+        <a href="#area">対応エリア</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact">お問い合わせ</a>
+        <a href="#contact">LINE</a>
+        <a href="tel:00000000000">電話</a>
+      </nav>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 North Reform</p>
+      <span class="footer-portfolio"><a href="../../index.html#works">← PromeonWeb ポートフォリオに戻る</a>　｜　このサイトはポートフォリオ用に制作した架空のものです。</span>
+    </div>
+  </div>
+</footer>
+
+<!-- mobile fixed CTA bar -->
+<nav class="cta-bar" aria-label="お問い合わせ">
+  <a href="tel:00000000000"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M6 3l3 5-2 2a12 12 0 0 0 5 5l2-2 5 3v3a2 2 0 0 1-2 2A17 17 0 0 1 4 5a2 2 0 0 1 2-2z"/></svg>電話</a>
+  <a href="#contact" class="is-line"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M4 4h16v13H7l-3 3z"/></svg>LINE</a>
+  <a href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.7"><path d="M4 5h16v14H4z"/><path d="M4 7l8 6 8-6"/></svg>フォーム</a>
+</nav>
+
+<script>
+(function () {
+  "use strict";
+
+  /* --- mobile navigation --- */
+  var header = document.querySelector('.site-header');
+  var toggle = document.querySelector('.nav-toggle');
+  var nav = document.getElementById('nav');
+  if (header && toggle && nav) {
+    var setNav = function (open) {
+      header.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      toggle.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
+    };
+    toggle.addEventListener('click', function () { setNav(!header.classList.contains('open')); });
+    nav.addEventListener('click', function (e) { if (e.target.closest('a')) setNav(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setNav(false); });
+    window.addEventListener('resize', function () { if (window.innerWidth > 960) setNav(false); });
+  }
+
+  /* --- header shadow on scroll --- */
+  var onScroll = function () {
+    if (!header) return;
+    header.classList.toggle('scrolled', window.scrollY > 4);
+  };
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* --- scroll-in animation (DESIGN.md §9) --- */
+  var animated = Array.prototype.slice.call(document.querySelectorAll('[data-animate]'));
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (reduce.matches || !('IntersectionObserver' in window)) {
+    animated.forEach(function (el) { el.classList.add('is-visible'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+    animated.forEach(function (el) { io.observe(el); });
+  }
+
+  /* --- contact form (no backend wired) --- */
+  var form = document.getElementById('contact-form');
+  var done = document.getElementById('contact-done');
+  var reset = document.getElementById('contact-reset');
+  if (form && done) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      form.hidden = true;
+      done.hidden = false;
+      done.classList.add('is-visible');
+      done.scrollIntoView({ behavior: reduce.matches ? 'auto' : 'smooth', block: 'center' });
+    });
+  }
+  if (reset && form && done) {
+    reset.addEventListener('click', function () {
+      form.reset();
+      done.hidden = true;
+      form.hidden = false;
+      form.scrollIntoView({ behavior: reduce.matches ? 'auto' : 'smooth', block: 'center' });
+    });
+  }
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>hair salon LUNO — サンプルサイト｜PromeonWeb</title>
+<meta name="description" content="hair salon LUNO（美容室・サロン / 店舗サイト（架空））のサンプルサイト。PromeonWeb のポートフォリオ用に制作した架空のWebサイトです。">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="../../_ds/modernist-b3b88146-6bed-4fb1-84db-471975131e54/styles.css">
+<style>
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: var(--color-bg); color: var(--color-text);
+    font-family: "Archivo", "Zen Kaku Gothic New", system-ui, sans-serif;
+    font-feature-settings: "palt" 1; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3 { font-family: "Archivo", "Zen Kaku Gothic New", system-ui, sans-serif; margin: 0; }
+  p { margin: 0; }
+  a { color: var(--color-accent-700); text-decoration: none; }
+  a:hover { color: var(--color-accent); }
+  ::selection { background: var(--color-accent-200); }
+
+  .site-header { position: sticky; top: 0; z-index: 30; background: var(--color-bg);
+    border-bottom: 2px solid var(--color-text); }
+  .site-header__inner { max-width: 1180px; margin: 0 auto; padding: 14px 24px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .site-header__brand { color: var(--color-text); font-weight: 900; font-size: 19px; letter-spacing: -0.02em; }
+  .site-header__back { font-size: 13px; font-weight: 700; letter-spacing: 0.04em; color: var(--color-text); }
+  .site-header__back:hover { color: var(--color-accent); }
+
+  main { max-width: 1180px; margin: 0 auto; padding: 72px 24px 96px; }
+
+  .crumb { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--color-accent-700); }
+  .sample-tag { display: inline-block; margin-top: 20px; padding: 5px 10px;
+    border: 1px solid var(--color-neutral-400); font-size: 12px; font-weight: 600;
+    letter-spacing: 0.04em; color: var(--color-neutral-800); }
+  h1.sample-title { font-size: clamp(30px, 6vw, 60px); font-weight: 900; line-height: 1.18;
+    letter-spacing: -0.02em; margin-top: 20px; }
+  .sample-kind { font-size: 14px; font-weight: 600; color: var(--color-neutral-700); margin-top: 12px; }
+  .sample-lead { font-size: 16px; line-height: 2; max-width: 42em; margin-top: 28px;
+    text-wrap: pretty; word-break: auto-phrase; }
+
+  .sample-meta { display: flex; flex-wrap: wrap; gap: 40px; margin-top: 40px;
+    padding-top: 24px; border-top: 2px solid var(--color-text); }
+  .sample-meta p:first-child { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; color: var(--color-neutral-700); }
+  .sample-meta p:last-child { font-size: 19px; font-weight: 800; margin-top: 8px; }
+  .sample-meta .is-price p:last-child { color: var(--color-accent-700); }
+
+  .wip { margin-top: 56px; border: 2px solid var(--color-text); background: var(--color-surface);
+    padding: 40px 32px; }
+  .wip h2 { font-size: 22px; font-weight: 900; }
+  .wip p { font-size: 15px; line-height: 2; margin-top: 16px; max-width: 40em; }
+  .wip a.btn-back { display: inline-flex; align-items: center; margin-top: 28px;
+    padding: 14px 24px; border: 2px solid var(--color-text); color: var(--color-text);
+    font-weight: 700; font-size: 14px; }
+  .wip a.btn-back:hover { background: var(--color-text); color: var(--color-bg); }
+
+  footer { border-top: 2px solid var(--color-text); }
+  footer > div { max-width: 1180px; margin: 0 auto; padding: 32px 24px;
+    display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; }
+
+  @media (max-width: 640px) {
+    .site-header__inner, main, footer > div { padding-left: 20px; padding-right: 20px; }
+    main { padding-top: 52px; padding-bottom: 64px; }
+  }
+</style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="../../index.html#top" class="site-header__brand">PromeonWeb</a>
+      <a href="../../index.html#works" class="site-header__back">&larr; ポートフォリオ一覧</a>
+    </div>
+  </header>
+
+  <main>
+    <p class="crumb">SAMPLE SITE</p>
+    <span class="sample-tag">美容室・サロン</span>
+    <h1 class="sample-title">hair salon LUNO</h1>
+    <p class="sample-kind">店舗サイト（架空）</p>
+    <p class="sample-lead">スタイリスト3名で運営する住宅街の小さな美容室を想定。仕上がりのイメージが決め手になるため、スタイル写真を主役に置いたサンプルサイトです。</p>
+
+    <div class="sample-meta">
+      <div>
+        <p>ページ数</p>
+        <p>6ページ</p>
+      </div>
+      <div>
+        <p>制作期間</p>
+        <p>5週間</p>
+      </div>
+      <div class="is-price">
+        <p>総額</p>
+        <p>15万円</p>
+      </div>
+    </div>
+
+    <!-- ============================================================= -->
+    <!-- ここに「hair salon LUNO」のサンプルサイト本体を制作します。          -->
+    <!-- 下の「準備中」ブロックを置き換えてください。                 -->
+    <!-- デザインシステム: ../../_ds/modernist-b3b88146-6bed-4fb1-84db-471975131e54/ -->
+    <!-- ============================================================= -->
+
+    <section class="wip">
+      <h2>このサンプルサイトは準備中です</h2>
+      <p>hair salon LUNO（美容室・サロン／店舗サイト（架空））のサンプルサイトは現在制作中です。公開までもうしばらくお待ちください。</p>
+      <a class="btn-back" href="../../index.html#works">ポートフォリオ一覧へ戻る</a>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      <span style="font-weight:900; font-size:16px">PromeonWeb</span>
+      <span style="font-size:12px; letter-spacing:0.08em; color:var(--color-neutral-700)">&copy; 2026 PromeonWeb</span>
+    </div>
+  </footer>
+
+</body>
+</html>
