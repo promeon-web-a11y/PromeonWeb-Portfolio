@@ -50,8 +50,12 @@
   /* Portfolio thumbnails link through to each sample site */
   .work-media-link { display: block; position: relative; overflow: hidden; text-decoration: none; color: inherit; }
   .work-media-link .work-media { transition: filter .3s ease; }
+  .work-media-link .work-media img { transition: transform .4s ease; }
   .work-media-link:hover .work-media,
   .work-media-link:focus-visible .work-media { filter: grayscale(0); }
+  .work-media-link:hover .work-media img,
+  .work-media-link:focus-visible .work-media img { transform: scale(1.04); }
+  @media (prefers-reduced-motion: reduce) { .work-media-link .work-media img { transition: none; } .work-media-link:hover .work-media img, .work-media-link:focus-visible .work-media img { transform: none; } }
   .work-media-link::after {
     content: "サンプルを見る →"; position: absolute; left: 0; bottom: 0;
     padding: 10px 16px; background: var(--color-accent); color: #fff;
@@ -226,35 +230,35 @@
     </article>
 
     <article style="border-top:2px solid var(--color-text); margin-top:48px; padding-top:32px; display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:40px; align-items:start">
-      <a class="work-media-link" href="samples/02-hokusuien/" aria-label="佐倉税理士事務所 のサンプルサイトを見る">
-        <div class="work-media is-empty">
-          <div class="ph"><span>事務所写真</span><small>IMAGE</small></div>
+      <a class="work-media-link" href="samples/02-hokusuien/" aria-label="株式会社北翠園 のサンプルサイトを見る">
+        <div class="work-media">
+          <img src="assets/works/work-2.webp" alt="株式会社北翠園 のサンプルサイト — トップページのイメージ">
         </div>
       </a>
       <div>
         <div style="display:flex; align-items:center; gap:14px; margin-bottom:16px">
           <span style="font-size:13px; font-weight:800; letter-spacing:0.1em; color:var(--color-accent)">02</span>
-          <span style="display:inline-block; padding:5px 10px; border:1px solid var(--color-neutral-400); font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--color-neutral-800); white-space:nowrap; flex-shrink:0">士業</span>
+          <span style="display:inline-block; padding:5px 10px; border:1px solid var(--color-neutral-400); font-size:12px; font-weight:600; letter-spacing:0.04em; color:var(--color-neutral-800); white-space:nowrap; flex-shrink:0">造園・外構</span>
         </div>
-        <h3 style="font-size:clamp(22px,2.6vw,30px); font-weight:900; line-height:1.35; letter-spacing:-0.01em">佐倉税理士事務所</h3>
+        <h3 style="font-size:clamp(22px,2.6vw,30px); font-weight:900; line-height:1.35; letter-spacing:-0.01em">株式会社北翠園</h3>
         <p style="font-size:14px; font-weight:600; color:var(--color-neutral-700); margin-top:8px">コーポレートサイト（架空）</p>
         <div style="margin-top:20px; max-width:36em; display:flex; flex-direction:column; gap:14px">
-          <p style="font-size:15px; line-height:1.95; text-wrap:pretty; word-break:auto-phrase">相続の相談と、中小企業の決算・顧問業務を扱う個人事務所を想定したサンプルです。身近に相談できる相手を探す相続人や、初めて税理士に依頼する小さな会社の<span class="nw">経営者が対象です。</span></p>
-          <p style="font-size:15px; line-height:1.95; text-wrap:pretty; word-break:auto-phrase">士業のサイトでつまずきやすい「相談したらいくらかかるのか分からない」という不安に応えるため、料金表より先に費用の考え方と、初回相談から契約までの<span class="nw">流れを説明しています。</span></p>
-          <p style="font-size:15px; line-height:1.95; text-wrap:pretty; word-break:auto-phrase">デザインは余白と文字組みで信頼感を優先しました。導線は「まず無料の初回相談を予約する」一点に絞り、電話・メール・フォームのどれからでも同じ場所に<span class="nw">たどり着くようにしています。</span></p>
+          <p style="font-size:15px; line-height:1.95; text-wrap:pretty; word-break:auto-phrase">1989年から札幌で、庭木の剪定や庭づくり、外構工事を手がけてきた従業員20名ほどの造園会社を想定したサンプルです。地域で長く続けてきた、職人の顔が見える<span class="nw">会社という設定にしています。</span></p>
+          <p style="font-size:15px; line-height:1.95; text-wrap:pretty; word-break:auto-phrase">見てほしいのは、庭の手入れに困り始めた戸建てにお住まいの方と、マンションや施設の植栽管理を任せたい会社の担当者です。「剪定1本だけでも頼めるのか」という人が、気軽に相談できることを<span class="nw">目指しました。</span></p>
+          <p style="font-size:15px; line-height:1.95; text-wrap:pretty; word-break:auto-phrase">トップ・事業内容・施工事例・私たちについて・会社案内の5ページ構成。働く人の雰囲気が伝わる写真を多めに使い、緑を基調とした落ち着いた見た目に。スマートフォンでの読みやすさと、電話・フォームへの<span class="nw">導線を優先しています。</span></p>
         </div>
         <div style="display:flex; flex-wrap:wrap; gap:32px; margin-top:40px; padding-top:20px; border-top:1px solid var(--color-neutral-300)">
           <div>
             <p style="font-size:12px; font-weight:700; letter-spacing:0.12em; color:var(--color-neutral-700)">ページ数</p>
-            <p style="font-size:17px; font-weight:800; margin-top:6px">8ページ</p>
+            <p style="font-size:17px; font-weight:800; margin-top:6px">5ページ</p>
           </div>
           <div>
             <p style="font-size:12px; font-weight:700; letter-spacing:0.12em; color:var(--color-neutral-700)">制作期間</p>
-            <p style="font-size:17px; font-weight:800; margin-top:6px">6週間</p>
+            <p style="font-size:17px; font-weight:800; margin-top:6px">4週間</p>
           </div>
           <div>
             <p style="font-size:12px; font-weight:700; letter-spacing:0.12em; color:var(--color-neutral-700)">総額</p>
-            <p style="font-size:17px; font-weight:800; margin-top:6px; color:var(--color-accent-700)">18万円</p>
+            <p style="font-size:17px; font-weight:800; margin-top:6px; color:var(--color-accent-700)">13万円</p>
           </div>
         </div>
       </div>
