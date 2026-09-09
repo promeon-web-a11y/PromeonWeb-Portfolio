@@ -469,8 +469,10 @@
             <button id="contact-reset" type="button" class="btn-reset" style="margin-top:24px; padding:12px 20px; border:2px solid var(--color-text); background:transparent; color:var(--color-text); font-weight:700; font-size:14px; cursor:pointer; white-space:nowrap">別の内容で送る</button>
           </div>
 
-          <!-- Wire `action` to a form endpoint (e.g. Formspree / a mail handler) for production delivery. -->
-          <form id="contact-form" action="#" method="post" style="margin-top:32px; display:flex; flex-direction:column; gap:24px">
+          <!-- Formspree endpoint. Submissions are delivered to satokazu.promeon@gmail.com -->
+          <form id="contact-form" action="https://formspree.io/f/xqpkgorw" method="post" style="margin-top:32px; display:flex; flex-direction:column; gap:24px">
+            <input type="hidden" name="_subject" value="PromeonWeb お問い合わせ">
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden">
             <label style="display:flex; flex-direction:column; gap:8px">
               <span style="font-size:13px; font-weight:700; letter-spacing:0.06em">お名前<span style="color:var(--color-accent-700)">（必須）</span></span>
               <input class="field-input" name="name" type="text" required style="padding:13px 14px; border:2px solid var(--color-text); background:var(--color-bg); color:var(--color-text); font-size:15px; outline-offset:2px">
@@ -516,6 +518,7 @@
               <span style="font-size:13px; font-weight:700; letter-spacing:0.06em">お問い合わせ内容</span>
               <textarea class="field-input" name="message" rows="6" style="padding:13px 14px; border:2px solid var(--color-text); background:var(--color-bg); color:var(--color-text); font-size:15px; outline-offset:2px; resize:vertical"></textarea>
             </label>
+            <p id="contact-error" hidden role="alert" style="margin:0; color:var(--color-accent-700); font-size:14px; font-weight:700; line-height:1.8">送信に失敗しました。時間をおいて再度お試しいただくか、satokazu.promeon@gmail.com まで直接ご連絡ください。</p>
             <div>
               <button type="submit" class="btn-submit" style="padding:16px 32px; background:var(--color-accent); color:#fff; border:2px solid var(--color-accent); font-weight:800; font-size:15px; cursor:pointer; white-space:nowrap">送信する</button>
             </div>
@@ -561,26 +564,52 @@
       });
     }
 
-    /* --- Contact form --- */
+    /* --- Contact form (Formspree AJAX submission) --- */
     var form = document.getElementById('contact-form');
     var done = document.getElementById('contact-done');
     var reset = document.getElementById('contact-reset');
+    var errorMsg = document.getElementById('contact-error');
 
     if (form) {
+      var submitBtn = form.querySelector('button[type="submit"]');
       form.addEventListener('submit', function (e) {
-        // No backend is wired yet — swap this for a real submission (fetch to a
-        // form endpoint) and keep the confirmation panel as the success state.
         e.preventDefault();
         if (!form.reportValidity()) return;
-        form.hidden = true;
-        done.hidden = false;
-        done.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+        if (errorMsg) errorMsg.hidden = true;
+        if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = '送信中…'; }
+
+        fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' }
+        })
+          .then(function (res) {
+            if (res.ok) {
+              form.hidden = true;
+              done.hidden = false;
+              done.scrollIntoView({ behavior: 'smooth', block: 'center' });
+              form.reset();
+            } else {
+              return res.json().then(function (data) {
+                throw new Error(data && data.errors ? data.errors.map(function (x) { return x.message; }).join(', ') : 'Submission failed');
+              });
+            }
+          })
+          .catch(function () {
+            if (errorMsg) {
+              errorMsg.hidden = false;
+              errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+          })
+          .finally(function () {
+            if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = '送信する'; }
+          });
       });
     }
 
     if (reset) {
       reset.addEventListener('click', function () {
-        form.reset();
         done.hidden = true;
         form.hidden = false;
         form.scrollIntoView({ behavior: 'smooth', block: 'center' });
