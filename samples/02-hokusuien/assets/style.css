@@ -100,8 +100,10 @@ body {
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
-h1, h2, h3, h4 { margin: 0; font-weight: 700; line-height: var(--lh-heading); }
+h1, h2, h3, h4 { margin: 0; font-weight: 700; line-height: var(--lh-heading); text-wrap: balance; }
 p { margin: 0; }
+/* 日本語の折り返し対策（DESIGN.md §11）：孤立文字・語中改行を抑える */
+p, li, dt, dd, summary, blockquote, figcaption { text-wrap: pretty; word-break: auto-phrase; }
 ul, ol { margin: 0; padding: 0; list-style: none; }
 img { display: block; max-width: 100%; }
 a { color: var(--color-primary); text-decoration: none; }
@@ -239,10 +241,11 @@ a:hover { color: var(--color-primary-hover); }
 .brand { display: flex; flex-direction: column; line-height: 1.25; }
 .brand b { font-size: 18px; font-weight: 700; letter-spacing: 0.04em; color: var(--color-text); }
 .brand span { font-size: 11px; color: var(--color-text-sub); letter-spacing: 0.06em; }
-.nav { display: flex; align-items: center; gap: var(--space-32); }
+.nav { display: flex; align-items: center; gap: clamp(16px, 2.2vw, 32px); }
 .nav > a {
   display: flex; flex-direction: column; align-items: center; gap: 3px;
   font-size: var(--fs-small); font-weight: 500; color: var(--color-text); letter-spacing: 0.02em;
+  white-space: nowrap;
 }
 .nav > a small {
   font-family: var(--font-en); font-size: 9.5px; font-weight: 700;
@@ -260,12 +263,15 @@ a:hover { color: var(--color-primary-hover); }
 .nav-toggle { display: none; }
 
 @media (max-width: 1023px) {
-  .nav, .header-cta { display: none; }
+  /* タブレット：ナビはハンバーガー、電話＋「相談する」はヘッダーに残す（下固定バーは SP のみ） */
+  .nav { display: none; }
   .nav-toggle {
     display: inline-flex; flex-direction: column; justify-content: center; gap: 5px;
-    width: 44px; height: 44px; margin-right: -8px;
+    width: 44px; height: 44px; margin-left: var(--space-8); margin-right: -8px;
     background: transparent; border: 0; cursor: pointer;
   }
+  .header-cta { gap: var(--space-16); }
+  .header-cta .btn { min-height: 40px; padding: 9px 16px; }
   .nav-toggle i { display: block; width: 24px; height: 2px; background: var(--color-text); transition: transform var(--dur-fast) ease, opacity var(--dur-fast) ease; }
   .site-header.open .nav-toggle i:nth-child(1) { transform: translateY(7px) rotate(45deg); }
   .site-header.open .nav-toggle i:nth-child(2) { opacity: 0; }
@@ -360,6 +366,9 @@ a:hover { color: var(--color-primary-hover); }
   .hero .cta-row .btn { width: 100%; }
   .hero__scroll { display: none; }
 }
+@media (max-width: 480px) {
+  .hero__brand { letter-spacing: 0.14em; }
+}
 
 /* ---------- page header (下層ページ / DESIGN.md §5 / §9) ---------- */
 .page-head { background: var(--color-surface); border-bottom: var(--border); padding-block: var(--section-y); }
@@ -380,12 +389,13 @@ a:hover { color: var(--color-primary-hover); }
 .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--gap-col); align-items: center; }
 .two-col + .two-col { margin-top: var(--space-64); }
 .two-col .col-media .media { width: 100%; }
-@media (min-width: 768px) {
+@media (min-width: 901px) {
   .two-col.reverse .col-media { order: 2; }
 }
-@media (max-width: 767px) {
-  .two-col { grid-template-columns: 1fr; gap: var(--space-24); }
-  .two-col .col-media { order: -1; } /* 写真 → テキスト */
+/* タブレット縦（〜900px）で 2カラムを縦積みに。順序は 写真 → テキスト */
+@media (max-width: 900px) {
+  .two-col { grid-template-columns: 1fr; gap: var(--space-32); align-items: start; }
+  .two-col .col-media { order: -1; }
   .two-col + .two-col { margin-top: var(--space-48); }
 }
 .mini-num { font-family: var(--font-en); font-size: var(--fs-label); font-weight: 700; letter-spacing: 0.14em; color: var(--color-primary); }
@@ -478,9 +488,13 @@ a:hover { color: var(--color-primary-hover); }
 .work .media img { transition: transform var(--dur-base) ease; }
 .work:hover .media img { transform: scale(1.03); }
 .work__body { padding: var(--space-24); }
-.work__meta { display: flex; flex-wrap: wrap; gap: var(--space-4) var(--space-16); font-size: var(--fs-caption); color: var(--color-text-sub); letter-spacing: 0.04em; }
-.work__meta .no { font-family: var(--font-en); font-weight: 700; letter-spacing: 0.12em; color: var(--color-primary); }
-.work__body h3 { font-size: var(--fs-h4); margin: var(--space-8) 0; }
+/* 情報階層（DESIGN.md / 依頼⑩）：中＝地域＋施工内容 / 強＝タイトル / 弱＝用途・年・番号 */
+.work__loc { font-size: var(--fs-small); font-weight: 500; color: var(--color-text); letter-spacing: 0.02em; }
+.work__loc span { color: var(--color-primary); }
+.work__loc span::before { content: "｜"; margin: 0 2px 0 4px; color: var(--color-border); font-weight: 400; }
+.work__body h3 { font-size: var(--fs-h3); margin: var(--space-8) 0; line-height: 1.5; }
+.work__tags { display: flex; flex-wrap: wrap; gap: 2px var(--space-16); font-size: var(--fs-caption); color: var(--color-text-sub); letter-spacing: 0.04em; }
+.work__tags .num { font-family: var(--font-en); letter-spacing: 0.08em; }
 .work__body p { font-size: var(--fs-small); text-wrap: pretty; word-break: auto-phrase; }
 .work__note { margin-top: var(--space-16); border-top: var(--border); padding-top: var(--space-16); }
 .work__note dl { display: grid; grid-template-columns: auto 1fr; gap: var(--space-8) var(--space-16); }
@@ -492,7 +506,7 @@ a:hover { color: var(--color-primary-hover); }
 .photo-band .media { border: 0; border-radius: 0; background: var(--color-accent); }
 
 /* ---------- history / SINCE 1989 (DESIGN.md §5 exception: centered, minimal motion) ---------- */
-.history { position: relative; overflow: hidden; background: var(--color-surface); text-align: center; }
+.history { position: relative; overflow: hidden; background: var(--color-surface); text-align: center; border-block: var(--border); }
 .history__bg { position: absolute; inset: 0; }
 .history__bg .media { width: 100%; height: 100%; border: 0; border-radius: 0; background: var(--color-accent); }
 .history__bg::after { content: ""; position: absolute; inset: 0; background: color-mix(in srgb, var(--color-surface) 82%, transparent); }
@@ -507,10 +521,11 @@ a:hover { color: var(--color-primary-hover); }
 /* ---------- staff (people, DESIGN.md §5 / §6) ---------- */
 .owner-word { max-width: var(--container-narrow); border-left: 3px solid var(--color-primary); padding: var(--space-8) 0 var(--space-8) var(--space-24); margin-bottom: var(--space-48); }
 .owner-word p { text-wrap: pretty; word-break: auto-phrase; }
+.owner-word p:first-child { margin-top: 0; }
 .owner-word p + p { margin-top: var(--space-16); }
 .owner-word cite { display: block; margin-top: var(--space-16); font-style: normal; font-size: var(--fs-small); color: var(--color-text-sub); }
 .people { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--gap-card); }
-.person .media { margin-bottom: var(--space-16); }
+.person .media { margin-bottom: var(--space-16); max-width: 320px; }
 .person h3 { font-size: var(--fs-h4); }
 .person .role { font-family: var(--font-en); font-size: var(--fs-caption); font-weight: 700; letter-spacing: 0.1em; color: var(--color-primary); margin-top: var(--space-4); }
 .person p { margin-top: var(--space-8); font-size: var(--fs-small); text-wrap: pretty; word-break: auto-phrase; }
@@ -522,7 +537,7 @@ a:hover { color: var(--color-primary-hover); }
 .community-list li svg { flex: none; width: 18px; height: 18px; stroke: var(--color-secondary); fill: none; margin-top: 4px; }
 .community-photos { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-16); }
 .community-photos .media:first-child { grid-column: 1 / -1; }
-@media (max-width: 767px) {
+@media (max-width: 900px) {
   .community-grid { grid-template-columns: 1fr; gap: var(--space-32); }
 }
 
@@ -629,7 +644,8 @@ a:hover { color: var(--color-primary-hover); }
 .site-footer { background: var(--color-surface); border-top: var(--border); padding-block: var(--space-64) var(--space-32); }
 .footer-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--space-32); }
 .footer-brand b { font-size: 17px; letter-spacing: 0.04em; }
-.footer-brand p { font-size: var(--fs-caption); color: var(--color-text-sub); margin-top: var(--space-8); }
+.footer-brand p { font-size: var(--fs-caption); color: var(--color-text-sub); margin-top: var(--space-8); line-height: 1.8; }
+.footer-brand p + p { margin-top: 2px; }
 .footer-nav { display: flex; flex-wrap: wrap; gap: var(--space-16) var(--space-24); }
 .footer-nav a { font-size: var(--fs-small); color: var(--color-text); }
 .footer-nav a:hover { color: var(--color-primary); }
@@ -654,6 +670,22 @@ a:hover { color: var(--color-primary-hover); }
   .cta-bar a svg { width: 18px; height: 18px; stroke: var(--color-primary); fill: none; }
   .cta-bar a.is-line svg { stroke: var(--color-line-brand); }
   body { padding-bottom: 58px; }
+}
+
+/* ---------- SP（〜767px）仕上げ：CTA・余白・折返し ---------- */
+@media (max-width: 767px) {
+  .header-cta { display: none; }                 /* 下固定バーに集約 */
+  .section-head { margin-bottom: var(--space-32); }
+  .section-head .lead { margin-top: var(--space-16); }
+  /* CTA ボタン群は縦積み・全幅で（幅バラつき / 折返しの防止、タップ領域確保） */
+  .cta-row { flex-direction: column; align-items: stretch; }
+  .cta-row .btn { width: 100%; }
+  .problems-close { flex-direction: column; align-items: stretch; gap: var(--space-16); }
+  .problems-close .btn { width: 100%; }
+  .cta-inline .btn { width: 100%; }
+  .cta-band p { max-width: none; }
+  /* 数値・英字が主体の行は詰まりすぎないように */
+  .work__tags { gap: 2px var(--space-8); }
 }
 
 /* ---------- scroll-in animation (DESIGN.md §9 — one motion, once) ---------- */

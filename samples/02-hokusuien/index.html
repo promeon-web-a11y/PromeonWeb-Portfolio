@@ -32,7 +32,7 @@
       <a href="service.html">事業内容<small>Service</small></a>
       <a href="works.html">施工事例<small>Works</small></a>
       <a href="about.html">私たちについて<small>About</small></a>
-      <a href="company.html">会社案内・お問い合わせ<small>Company</small></a>
+      <a href="company.html">会社案内<small>Company</small></a>
       <span class="nav__cta"><a class="btn primary" href="company.html#contact">庭のお悩みを相談する</a></span>
     </nav>
 
@@ -57,13 +57,11 @@
        森造園 / AUREA / 高重造園 の FV に倣う。 ============ -->
   <section class="hero" aria-label="株式会社北翠園">
     <div class="hero__media" aria-hidden="true">
-      <!-- PHOTO[hero]: 引きで撮った庭＋剪定作業中の職人が入った1枚。全幅 cover。中央にテキストが乗るため、中央〜下がやや暗めの写真が望ましい。差し替え可。 -->
       <div class="media bare">
-        <div class="media__ph">
-          <svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M12 3c3 3 5 6 5 10a5 5 0 0 1-10 0c0-4 2-7 5-10z"/><path d="M12 13v8"/></svg>
-          <span>庭全体の引き写真＋剪定作業中の職人</span>
-          <small>HERO IMAGE</small>
-        </div>
+        <picture>
+          <source media="(max-width: 767px)" srcset="assets/img/hero/hero-sp.webp" width="1122" height="1402">
+          <img src="assets/img/hero/hero.webp" width="1672" height="941" alt="" decoding="async" fetchpriority="high">
+        </picture>
       </div>
     </div>
     <div class="hero__scrim" aria-hidden="true"></div>
@@ -72,13 +70,11 @@
     <div class="hero__text">
       <p class="hero__brand hero__seq">
         SAPPORO &nbsp;—&nbsp; SINCE 1989
-        <b>札幌の造園会社　株式会社 北翠園</b>
+        <b>札幌の造園会社　株式会社北翠園</b>
       </p>
       <h1 class="hero__seq">この街の緑を、<br>これからも。</h1>
       <p class="hero__sub hero__seq">
-        1989年の創業以来、札幌の庭と緑に向き合ってきました。<br>
-        庭木1本の剪定から庭づくり、法人の年間管理まで。<br>
-        これからも、地域の皆さまに気軽に頼っていただける造園会社であり続けます。
+        1989年の創業以来、札幌の庭と緑に向き合ってきました。庭木1本の剪定から庭づくり、法人の年間管理まで。これからも、地域の皆さまに気軽に頼っていただける造園会社であり続けます。
       </p>
       <div class="cta-row hero__seq">
         <a class="btn primary" href="company.html#contact">庭のお悩みを相談する</a>
@@ -94,8 +90,7 @@
       <div class="two-col">
         <div class="col-media" data-animate>
           <div class="media r-3x2">
-            <!-- PHOTO: 複数スタッフの作業風景、または引きの庭。3:2 -->
-            <div class="media__ph"><span>スタッフの作業風景／引きの庭</span><small>ABOUT</small></div>
+            <img src="assets/img/about/intro-home.webp" width="1536" height="1024" alt="複数のスタッフで庭仕事をする様子" loading="lazy" decoding="async">
           </div>
         </div>
         <div class="col-text" data-animate data-delay="1">
@@ -149,7 +144,7 @@
       </ul>
 
       <div class="problems-close" data-animate>
-        <p>庭木1本のご相談からで、かまいません。</p>
+        <p>庭木1本から、お気軽にご相談ください。</p>
         <a class="btn primary" href="company.html#contact">庭のお悩みを相談する</a>
       </div>
     </div>
@@ -183,11 +178,7 @@
   <!-- ============ 05. 全幅写真バンド ============ -->
   <section class="photo-band" aria-hidden="true">
     <div class="media r-21x9 bare">
-      <div class="media__ph">
-        <svg viewBox="0 0 24 24" stroke-width="1.6"><path d="M3 20h18M6 20V9l6-5 6 5v11M10 20v-6h4v6"/></svg>
-        <span>庭全体を引きで撮影した写真、または複数スタッフの作業風景</span>
-        <small>FULL-WIDTH BAND</small>
-      </div>
+      <img src="assets/img/band/band-home.webp" width="1916" height="821" alt="" loading="lazy" decoding="async">
     </div>
   </section>
 
@@ -202,35 +193,38 @@
 
       <div class="works-grid">
         <article class="work" data-animate>
-          <div class="media r-4x3"><div class="media__ph"><span>戸建て庭リフォーム（施工後）</span><small>WORKS 001</small></div></div>
+          <div class="media r-4x3"><img src="assets/img/works/works-001.webp" width="1448" height="1086" alt="札幌市西区の戸建て住宅で行った庭リフォームの施工後" loading="lazy" decoding="async"></div>
           <div class="work__body">
-            <p class="work__meta"><span class="no">No.001</span><span>札幌市西区</span><span>庭リフォーム</span><span>2025年</span></p>
+            <p class="work__loc">札幌市西区<span>庭リフォーム</span></p>
             <h3>使わなくなった庭を、手入れしやすい庭へ</h3>
             <p>植木を整理し、園路と砂利で歩きやすく。草取りの負担を減らす植栽に切り替えました。</p>
+            <p class="work__tags">戸建て住宅<span class="num">2025年</span><span class="num">No.001</span></p>
           </div>
         </article>
         <article class="work" data-animate data-delay="1">
-          <div class="media r-4x3"><div class="media__ph"><span>庭木剪定（施工後）</span><small>WORKS 002</small></div></div>
+          <div class="media r-4x3"><img src="assets/img/works/works-002.webp" width="1448" height="1086" alt="札幌市豊平区の戸建て住宅で行った庭木剪定の施工後" loading="lazy" decoding="async"></div>
           <div class="work__body">
-            <p class="work__meta"><span class="no">No.002</span><span>札幌市豊平区</span><span>戸建て住宅／庭木剪定</span><span>2025年</span></p>
+            <p class="work__loc">札幌市豊平区<span>庭木剪定</span></p>
             <h3>伸びすぎたイチイ・ナナカマドの剪定</h3>
-            <p>道路側にはみ出した枝を整理し、風通しと見通しを確保。以後は年1回の剪定でご依頼いただいています。</p>
+            <p>道路側にはみ出した枝を整理し、風通しと見通しを確保。翌年からは年1回の剪定でご依頼いただいています。</p>
+            <p class="work__tags">戸建て住宅<span class="num">2025年</span><span class="num">No.002</span></p>
           </div>
         </article>
         <article class="work" data-animate data-delay="2">
-          <div class="media r-4x3"><div class="media__ph"><span>庭木伐採（施工前後）</span><small>WORKS 003</small></div></div>
+          <div class="media r-4x3"><img src="assets/img/works/works-003.webp" width="1448" height="1086" alt="札幌市北区の戸建て住宅で行った庭木の伐採・抜根の様子" loading="lazy" decoding="async"></div>
           <div class="work__body">
-            <p class="work__meta"><span class="no">No.003</span><span>札幌市北区</span><span>庭木伐採・抜根</span><span>2024年</span></p>
+            <p class="work__loc">札幌市北区<span>庭木伐採・抜根</span></p>
             <h3>大きくなりすぎた庭木の伐採と抜根</h3>
             <p>建物や電線に近い高木を、周囲に配慮しながら分割して伐採。切り株の抜根まで行いました。</p>
+            <p class="work__tags">戸建て住宅<span class="num">2024年</span><span class="num">No.003</span></p>
           </div>
         </article>
       </div>
 
       <div class="cta-inline" data-animate>
         <div>
-          <p>気になる庭仕事があれば、写真を見せていただくところからで大丈夫です。</p>
-          <p class="sub">工事するか決まっていなくても、かまいません。</p>
+          <p>気になる庭仕事があれば、まず写真を見ていただくところからご相談いただけます。</p>
+          <p class="sub">工事をするか決めていない段階でも問題ありません。</p>
         </div>
         <a class="btn primary" href="works.html">施工事例をもっと見る</a>
       </div>
@@ -282,7 +276,7 @@
   <!-- ============ 08. SINCE 1989（歴史 — 中央揃え・動き最小 / 参考: 高重造園） ============ -->
   <section class="section section-lg history" id="history" aria-labelledby="history-h">
     <div class="history__bg" aria-hidden="true">
-      <div class="media bare"><div class="media__ph"><span>昔の作業写真、または年月を感じる庭</span><small>SINCE 1989</small></div></div>
+      <div class="media bare"><img src="assets/img/history/history-bg.webp" width="1916" height="821" alt="" loading="lazy" decoding="async"></div>
     </div>
     <div class="history__inner">
       <p class="history__since" data-animate>SINCE 1989</p>
@@ -290,10 +284,7 @@
       <div class="history__rule" data-animate aria-hidden="true"></div>
       <h2 id="history-h" class="history__lead" data-animate>この街と歩んで、37年。</h2>
       <p class="history__body" data-animate>
-        創業以来、地域のお客様とともに。<br>
-        代がわりしても剪定にうかがう庭があり、
-        新しく庭を任せてくださるお客様がいます。
-        これからも、この街の緑を守り続けます。
+        創業以来、地域のお客様に支えられてきました。代替わりしても剪定に伺う庭があり、新しく庭を任せてくださる方もいます。これからも、この街の緑を守り続けます。
       </p>
       <div class="section-foot" data-animate>
         <a class="arrow-link" href="about.html">会社の歴史を見る</a>
@@ -318,9 +309,9 @@
           <li><svg viewBox="0 0 24 24" stroke-width="1.7"><path d="M5 13l4 4L19 7"/></svg>公園周辺の美化活動・植樹活動</li>
         </ul>
         <div class="community-photos">
-          <div class="media r-3x2" data-animate><div class="media__ph"><span>地域清掃の様子</span><small>COMMUNITY</small></div></div>
-          <div class="media r-3x2" data-animate data-delay="1"><div class="media__ph"><span>お祭り・イベント</span><small>COMMUNITY</small></div></div>
-          <div class="media r-3x2" data-animate data-delay="2"><div class="media__ph"><span>植樹・美化活動</span><small>COMMUNITY</small></div></div>
+          <div class="media r-3x2" data-animate><img src="assets/img/community/community-01-cleanup.webp" width="1536" height="1024" alt="町内清掃に参加する様子" loading="lazy" decoding="async"></div>
+          <div class="media r-3x2" data-animate data-delay="1"><img src="assets/img/community/community-02-festival.webp" width="1536" height="1024" alt="地域のお祭り・イベントの様子" loading="lazy" decoding="async"></div>
+          <div class="media r-3x2" data-animate data-delay="2"><img src="assets/img/community/community-03-planting.webp" width="1536" height="1024" alt="植樹活動の様子" loading="lazy" decoding="async"></div>
         </div>
       </div>
     </div>
@@ -363,7 +354,7 @@
   <section class="section band bg-accent cta-band" aria-labelledby="cta-h">
     <div class="container">
       <h2 id="cta-h" data-animate>庭木1本から、ご相談ください。</h2>
-      <p data-animate>剪定も、庭づくりも、年間管理も。札幌の地域に根ざした造園会社として、庭のことをまとめてお引き受けします。工事するか決まっていなくても、かまいません。</p>
+      <p data-animate>剪定も庭づくりも、年間の管理も。札幌に根ざした造園会社として、庭のことをまとめてお引き受けします。工事をするかどうかは、ご相談のあとで決めていただけます。</p>
       <div class="cta-row" data-animate>
         <a class="btn primary" href="company.html#contact">庭のお悩みを相談する</a>
         <a class="btn secondary" href="tel:0110000000">011-000-0000 に電話する</a>
@@ -379,15 +370,16 @@
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
-        <b>株式会社 北翠園</b>
-        <p>造園工事／庭園管理／庭木の剪定・伐採／外構・エクステリア／年間管理／冬囲い<br>札幌市・石狩市・江別市・北広島市ほか札幌近郊対応</p>
+        <b>株式会社北翠園</b>
+        <p>造園工事／庭園管理／庭木の剪定・伐採／外構・エクステリア／年間管理／冬囲い</p>
+        <p>札幌市・石狩市・江別市・北広島市ほか札幌近郊対応</p>
       </div>
       <nav class="footer-nav" aria-label="フッターナビゲーション">
         <a href="index.html">トップ</a>
         <a href="service.html">事業内容</a>
         <a href="works.html">施工事例</a>
         <a href="about.html">私たちについて</a>
-        <a href="company.html">会社案内・お問い合わせ</a>
+        <a href="company.html">会社案内</a>
         <a href="company.html#faq">よくある質問</a>
       </nav>
     </div>
